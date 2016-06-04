@@ -1,0 +1,56 @@
+<!--#set var="h1" value="Přihláška právnické osoby" -->
+<!--#include virtual="/prihlaska/hlavicka.html" -->
+<form action="/prihlaska/send.php" method="post">
+
+<label>Přihlašovací jméno</label>
+<div class="row">
+	<div class="col-xs-12 form-group">
+		<input type="text" class="form-control" id="nick" placeholder="Přihlašovací jméno">
+	</div>
+</div>
+
+<label for="name">Kontaktní osoba</label>
+<div class="row form-group">
+	<div class="col-xs-6">
+		<input type="text" class="form-control" id="name" placeholder="Jméno">
+	</div>
+
+	<div class="col-xs-6">
+			<input type="text" class="form-control" id="surname" placeholder="Příjmení">
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-6 form-group">
+		<input type="text" class="form-control" id="email" placeholder="E-mail">
+	</div>
+
+	<div class="col-xs-6">
+			<input type="text" class="form-control" id="birth" placeholder="Rok narození">
+	</div>
+</div>
+
+<label for="name">Sídlo firmy</label>
+<div class="row">
+	<div class="col-xs-6 form-group">
+		<input type="text" class="form-control" id="address" placeholder="Ulice, č.p.">
+	</div>
+
+	<div class="col-xs-6">
+			<input type="text" class="form-control" id="city" placeholder="Město">
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-6 form-group">
+		<input type="text" class="form-control" id="zip" placeholder="PSČ">
+	</div>
+
+	<div class="col-xs-6">
+			<input type="text" class="form-control" id="country" placeholder="Stát">
+	</div>
+</div>
+
+</form>
+<!--#include virtual="/prihlaska/spolecne.php" -->
+<!--#include virtual="/prihlaska/paticka.html" -->
