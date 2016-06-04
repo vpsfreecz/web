@@ -1,0 +1,134 @@
+<!--#set var="titulek" value="Přihláška" -->
+<!--#set var="obarvi" value="menu-7" -->
+<!--# include file="/hlavicka.html" -->
+
+<div class="container text-center">
+
+<h1 clas="text-center">Přihláška</h1>
+<p>Vyplň údaje úplně a pravdivě. Uvedené informace nikde nezveřejňujeme, pouze nám slouží k&nbsp;lepšímu posouzení přihlášky.</p>
+
+<form>
+
+<div class="row">
+	<div class="col-xs-12 form-group">
+		<label for="person">Osoba</label>
+		<select class="form-control" id="person">
+			<option disabled selected>Fyzická nebo právnická osoba</option>
+			<option>Fyzická</option>
+			<option>Právnická</option>
+		</select>
+	</div>
+
+</div>
+
+
+<label for="name">Osobní údaje</label>
+<div class="row form-group">
+	<div class="col-xs-6">
+		<input type="text" class="form-control" id="name" placeholder="Jméno">
+	</div>
+
+	<div class="col-xs-6">
+			<input type="text" class="form-control" id="surname" placeholder="Příjmení">
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-6 form-group">
+		<input type="text" class="form-control" id="nick" placeholder="Přezdívka">
+	</div>
+
+	<div class="col-xs-6">
+			<input type="text" class="form-control" id="birth" placeholder="Rok narození">
+	</div>
+</div>
+
+<label for="name">Adresa</label>
+<div class="row">
+	<div class="col-xs-6 form-group">
+		<input type="text" class="form-control" id="address" placeholder="Ulice, č.p.">
+	</div>
+
+	<div class="col-xs-6">
+			<input type="text" class="form-control" id="city" placeholder="Město">
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-6 form-group">
+		<input type="text" class="form-control" id="zip" placeholder="PSČ">
+	</div>
+
+	<div class="col-xs-6">
+			<input type="text" class="form-control" id="country" placeholder="Stát">
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-xs-12 form-group">
+		<input type="text" class="form-control" id="email" placeholder="E-mail">
+	</div>
+
+</div>
+
+<label for="name">Doplňující údaje</label>
+<div class="row">
+	<div class="col-xs-12 form-group">
+		<input type="text" class="form-control" id="how" placeholder="Jak ses o nás dozvěděl?">
+	</div>
+
+</div>
+
+<div class="row">
+	<div class="col-xs-12 form-group">
+		<input type="text" class="form-control" id="note" placeholder="Poznámky">
+	</div>
+
+</div>
+
+<label for="name">Nastavení VPS</label>
+<div class="row">
+	<div class="col-xs-12 form-group">
+		<select class="form-control">
+			<option disabled selected>Vyber si distribuci</option>
+			<option>Debian</option>
+			<option>Ubuntu</option>
+			<option>Fedora</option>
+			<option>Gentoo</option>
+		</select>
+	</div>
+
+</div>
+
+<div class="row">
+	<div class="col-xs-12 form-group">
+		<select class="form-control">
+			<option disabled selected>Preferovaná lokace pro VPS</option>
+			<option>Master Internet Praha</option>
+			<option>Master Internet Brno</option>
+		</select>
+	</div>
+
+</div>
+
+<div class="row">
+	<div class="col-xs-12 form-group">
+		<select class="form-control">
+			<option disabled selected>Měna platby členského poplatku</option>
+			<option>900 Kč na tři měsíce</option>
+			<option>36 eur na tři měsíce</option>
+		</select>
+	</div>
+<p>Chceš-li fakturu, pošli po schválení přihlášky na <a href="/kontakt/">podporu</a> fakturační údaje.</p>
+</div>
+
+
+<div class="row">
+	<button class="btn btn-default" type="submit">Odeslat</button>
+</div>
+
+</form>
+
+</div>
+
+<!--# include file="/paticka.html" -->

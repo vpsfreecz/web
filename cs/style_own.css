@@ -1,0 +1,68 @@
+body {
+  padding: 70px 0px 70px 0px;
+}
+
+.orange {
+	color: #f6914b;
+}
+
+.wide {
+	width: 100%;
+}
+
+.navbar	{
+	font-size: 18px;
+}
+
+.panel-footer a {
+	color: #1f3959;
+}
+
+.dolava {
+	text-align: left;
+}
+
+.doprava {
+	text-align: right;
+}
+
+.table-params {
+	margin: auto;
+}
+
+.table-params td {
+ padding: 3px;
+}
+
+a.support {
+	font-size:4em;
+	}
+
+@media screen and (max-width: 768px) {
+a.support {
+	font-size:2em;
+	}
+}
+
+.support-logo {
+	margin: 20px;
+}
+
+.invert:hover {
+	-webkit-filter: invert(1);
+	filter: invert(1);
+	filter:progid:DXImageTransform.Microsoft.BasicImage(invert='1');
+}
+
+.parametry {
+	height:18em;
+}
+
+.zacit {
+	height:22em;
+}
+
+
+.kontakty {
+	height:10em;
+}
