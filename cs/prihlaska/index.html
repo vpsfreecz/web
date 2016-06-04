@@ -5,7 +5,7 @@
 <div class="row">
 	<div class="col-xs-12 form-group">
 		<label for="person">Osoba</label>
-		<select class="form-control" id="person" name="type">
+		<select class="form-control" id="entity-type" name="entity-type">
 			<option disabled selected>Fyzická nebo právnická osoba</option>
 			<option value="fyzicka">Fyzická</option>
 			<option value="pravnicka">Právnická</option>
@@ -14,9 +14,14 @@
 
 </div>
 
+<div id="form-placeholder"></div>
+
 <div class="row">
-  <input class="btn btn-default" type="submit" name="continue" value="Pokračovat">
+  <input class="btn btn-default" type="submit" id="continue" name="continue" value="Pokračovat">
 </div>
 
 </form>
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/form.js"></script>
 <!--#include virtual="paticka.html" -->

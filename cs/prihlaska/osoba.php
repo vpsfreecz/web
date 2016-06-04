@@ -1,6 +1,6 @@
 <?php
 
-switch ($_POST['type']) {
+switch ($_POST['entity-type']) {
     case 'fyzicka':
         header('Location: fyzicka-osoba');
         break;
