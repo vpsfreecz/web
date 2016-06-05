@@ -1,3 +1,10 @@
+<?php
+require '../../config.php';
+require '../../lib/db.lib.php';
+
+$db = new sql_db (DB_HOST, DB_USER, DB_PASS, DB_NAME);
+?>
+
 <label for="name">Doplňující údaje</label>
 <div class="row">
 	<div class="col-xs-12 form-group">
@@ -18,10 +25,10 @@
 	<div class="col-xs-12 form-group">
 		<select class="form-control" name="distribution">
 			<option disabled selected>Vyber si distribuci</option>
-			<option value="debian">Debian</option>
-			<option value="ubuntu">Ubuntu</option>
-			<option value="fedora">Fedora</option>
-			<option value="gentoo">Gentoo</option>
+			<?php
+			while($tpl = $db->findByColumn("cfg_templates", "templ_supported", "1", "templ_order, templ_label"))
+				echo '<option value="'.$tpl["templ_id"].'">'.$tpl["templ_label"].'</option>';
+			?>
 		</select>
 	</div>
 
@@ -31,8 +38,20 @@
 	<div class="col-xs-12 form-group">
 		<select class="form-control" name="location">
 			<option disabled selected>Preferovaná lokace pro VPS</option>
-			<option value="praha">Master Internet Praha</option>
-			<option value="brno">Master Internet Brno</option>
+			<?php
+			$sql = 'SELECT location_id, location_label
+					FROM locations l
+					INNER JOIN servers s ON l.location_id = s.server_location
+					WHERE s.environment_id = '.$db->check(ENVIRONMENT_ID).'
+					GROUP BY location_id
+					ORDER BY location_id';
+				$rs = $db->query($sql);
+				while ($loc = $db->fetch_array($rs)) {
+					echo '<option value="'.$loc["location_id"].'">';
+					echo 'Master Internet '.$loc["location_label"];
+					echo '</option>';
+				}
+			?>
 		</select>
 	</div>
 
