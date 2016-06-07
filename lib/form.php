@@ -157,12 +157,13 @@ class Validators {
 		if (!preg_match('/^[a-zA-Z0-9\-\.]{2,63}$/', $v))
 			$ret[] = 'NOTLOGIN';
 
-		$q = $this->db->findOnce(
-			'members',
-			array("LOWER(m_nick) = '".$this->db->check(strtolower($v))."'")
+		$rs = $this->db->query("
+			SELECT m_nick
+			FROM members
+			WHERE LOWER(m_nick) = '".$this->db->check(strtolower($v))."'"
 		);
 
-		if ($q)
+		if ($this->db->fetchArray($rs))
 			$ret[] = 'EEXISTS';
 
 		return $ret;
