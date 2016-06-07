@@ -7,7 +7,7 @@ class RegistrationForm {
 	private $errors = array();
 	private $data;
 
-	public function __construct($lang, $db, $data = null) {
+	public function __construct($lang, $db = null, $data = null) {
 		$this->lang = $lang;
 		$this->db = $db;
 		$this->data = $this->clean($data);
