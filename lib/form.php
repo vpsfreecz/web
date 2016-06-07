@@ -36,6 +36,10 @@ class RegistrationForm {
 		return $TR[$this->lang]['form']['fields'][$field];
 	}
 
+	public function getData() {
+		return $this->data;
+	}
+
 	public function input($name, $type = 'text', $attrs = array()) {
 		$ret = '<input
 			type="'.$type.'"

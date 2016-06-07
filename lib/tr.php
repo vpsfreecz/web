@@ -33,5 +33,23 @@ $TR = array(
 				'EEXISTS' => 'tato hodnota už je použita, zvol prosím jinou',
 			)
 		),
+		'mail' => function ($data) {
+			$sub = '[vpsFree.cz] Přihláška přijata';
+			$body = 'Ahoj '.$data["login"].',
+
+Tvá přihláška byla přijata a bude předložena radě spolku ke schválení. Do 24 hodin Tě budeme kontaktovat.
+Pokud by se tak nestalo, obrať se prosím na podpora@vpsfree.cz.
+
+Mezitím doporučujeme, aby sis prošel důkladněji náš web na https://www.vpsfree.cz.
+Další informace, které nezbytně potřebuješ vědět, jsou na https://kb.vpsfree.cz/informace/novacci.
+A konečně, na naší Knowledge Base je kolekce krátkych návodů, které jsou pro vpsFree specifické, je dobré o nich aspoň mít přehled:
+https://kb.vpsfree.cz
+
+Vážíme si Tvého zájmu,
+
+vpsFree.cz
+';
+			return array($sub, $body);
+		}
 	),
 );

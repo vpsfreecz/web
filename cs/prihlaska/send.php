@@ -8,6 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 require_once '../../config.php';
 require_once '../../lib/db.lib.php';
 require_once '../../lib/form.php';
+require_once '../../lib/register.php';
 
 $db = new sql_db (DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
@@ -32,4 +33,9 @@ if (!$f->isValid()) {
 	exit;
 }
 
-echo "You did it!";
+$registration = new Registration('cs', $db, $f->getData());
+$registration->register();
+
+// TODO: error checking?
+
+header('Location: /prihlaska/prijata/');
