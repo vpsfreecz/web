@@ -46,7 +46,7 @@
 		saveState();
 
 		$.ajax({
-			url: '/prihlaska/'+name+'/form.html',
+			url: '/prihlaska/'+name+'/form.php',
 			success: function (data) {
 				$('#form-placeholder').html(data);
 				restoreState();
