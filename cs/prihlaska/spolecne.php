@@ -78,5 +78,5 @@ if (!$db)
 
 
 <div class="row">
-	<input class="btn btn-default" type="submit" value="Odeslat">
+	<input class="btn btn-default" type="submit" id="send" value="Odeslat">
 </div>

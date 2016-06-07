@@ -30,7 +30,7 @@
 	function fetchForm() {
 		var name;
 
-		switch ($('#entity-type').val()) {
+		switch ($('#entity_type').val()) {
 		case 'fyzicka':
 			name = 'fyzicka-osoba';
 			break;
@@ -55,7 +55,7 @@
 	}
 
 	$('#continue').remove();
-	$('#entity-type').change(fetchForm);
+	$('#entity_type').change(fetchForm);
 
 	$('form').attr('action', 'send.php');
 	fetchForm();

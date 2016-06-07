@@ -45,6 +45,10 @@ class RegistrationForm {
 		return $this->entityType;
 	}
 
+	public function isValidationTest() {
+		return array_key_exists('_mock', $this->data) && $this->data['_mock'];
+	}
+
 	public function input($name, $type = 'text', $attrs = array()) {
 		$ret = '<input
 			type="'.$type.'"

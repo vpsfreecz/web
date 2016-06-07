@@ -33,6 +33,11 @@ if (!$f->isValid()) {
 	exit;
 }
 
+if ($f->isValidationTest()) {
+	header('Location: /prihlaska/prijata/');
+	exit;
+}
+
 $registration = new Registration('cs', $db, $f->getData());
 $registration->register();
 
