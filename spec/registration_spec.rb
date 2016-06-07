@@ -52,10 +52,10 @@ describe "vpsFree.cz registration form" do
       first_name: {
           false => [
               'a',
-              'aa',
               ' ' * 3,
           ],
           true => [
+              'aa',
               'aaa',
               'Илья́',
               'Алекса́ндрович',
@@ -65,10 +65,10 @@ describe "vpsFree.cz registration form" do
       surname: {
           false => [
               'a',
-              'aa',
               ' ' * 3,
           ],
           true => [
+              'aa',
               'aaa',
               'Ежо́в',
               '文方运际祥',
@@ -106,9 +106,9 @@ describe "vpsFree.cz registration form" do
               ' ' * 3,
               '123 456',
               'a',
-              'Aš',
           ],
           true => [
+              'Aš',
               'Cheb',
               'Valašské Meziříčí',
               '東京',
@@ -311,7 +311,8 @@ END
 		it 'validates currency'
 		
 		it 'can be submitted' do
-			write_fields(get_field_data(fields))
+			select_entity(entity)
+			write_fields(self.class.get_field_data(fields))
 			select_choices
 			submit
 
