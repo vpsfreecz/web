@@ -2,6 +2,10 @@ body {
   padding: 70px 0px 70px 0px;
 }
 
+.nav a {
+	outline: none;
+}
+
 .orange {
 	color: #f6914b;
 }
