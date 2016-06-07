@@ -79,17 +79,17 @@ class Registration {
 		$location = $this->db->findByColumnOnce("locations", "location_id", $this->data["location"]);
 
 		$application = '
-			Nickname: '.$this->data["login"].'
-					Name: '.$this->data["first_name"].' '.$this->data["surname"].'
-					Email: '.$this->data["email"].'
-				Adresa: '.$this->data["address"].", ".$this->data["zip"]." ".$this->data["city"].", ".$this->data["country"].'
-	Year of birth: '.$this->data["birth"].'
-				Jabber: 
-						How: '.$this->data["how"].'
-					Note: '.$this->data["note"].'
-			Currency: '.$this->data["currency"].'
-	Distribution: '.$distro["templ_id"].' '.$distro["templ_label"].'
-			Location: '.$location["location_id"].' '.$location["location_label"].'
+        Login: '.$this->data["login"].'
+         Name: '.$this->data["first_name"].' '.$this->data["surname"].'
+        Email: '.$this->data["email"].'
+       Adresa: '.$this->data["address"].", ".$this->data["zip"]." ".$this->data["city"].", ".$this->data["country"].'
+Year of birth: '.$this->data["birth"].'
+       Jabber: 
+          How: '.$this->data["how"].'
+         Note: '.$this->data["note"].'
+     Currency: '.$this->data["currency"].'
+ Distribution: '.$distro["templ_id"].' '.$distro["templ_label"].'
+     Location: '.$location["location_id"].' '.$location["location_label"].'
 		';
 
 		$text = str_replace("%changed_info%", $application, $text);
