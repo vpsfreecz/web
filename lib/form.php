@@ -219,8 +219,6 @@ class Validators {
 		if (strlen($v) < 2)
 			$ret[] = 'LEN_2';
 
-		if (!preg_match('/\w/', $v))
-
 		if (!preg_match('/\d/', $v))
 			$ret[] = 'NOHOUSEN';
 
