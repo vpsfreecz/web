@@ -222,12 +222,16 @@ class Validators {
 	}
 
 	public function birth($v) {
+		$ret = array();
 		$y = date('Y');
 
-		if ($v < ($y - 100) || ($y - $v) <= 5)
-			return 'NOTBIRTH';
+		if (preg_match('/\D/', $v))
+			$ret[] = 'NUMONLY';
 
-		return true;
+		if ($v < ($y - 100) || ($y - $v) <= 5)
+			$ret[] = 'NOTBIRTH';
+
+		return $ret;
 	}
 	
 	public function address($v) {
