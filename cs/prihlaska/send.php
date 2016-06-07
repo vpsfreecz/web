@@ -26,7 +26,7 @@ if (!$f->isValid()) {
 	}
 
 	echo '<input type="hidden" name="entity_type" value="'.$_POST['entity_type'].'">';
-	include 'fyzicka-osoba/form.php';
+	include $f->getEntityType().'-osoba/form.php';
 
 	echo '</form>';
 	virtual('/prihlaska/paticka.html');

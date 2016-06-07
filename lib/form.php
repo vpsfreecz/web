@@ -6,6 +6,7 @@ class RegistrationForm {
 	private $valid = true;
 	private $errors = array();
 	private $data;
+	private $entityType;
 
 	public function __construct($lang, $db = null, $data = null) {
 		$this->lang = $lang;
@@ -38,6 +39,10 @@ class RegistrationForm {
 
 	public function getData() {
 		return $this->data;
+	}
+
+	public function getEntityType() {
+		return $this->entityType;
 	}
 
 	public function input($name, $type = 'text', $attrs = array()) {
@@ -92,6 +97,14 @@ class RegistrationForm {
 	public function validate() {
 		if (!$this->data)
 			return $this->valid = false;
+
+		$entities = array('fyzicka', 'pravnicka');
+
+		if (in_array($this->data['entity_type'], $entities))
+			$this->entityType = $this->data['entity_type'];
+
+		else
+			$this->entityType = 'fyzicka';
 
 		$fields = array(
 			'login',
