@@ -215,7 +215,10 @@ class Validators {
 	}
 
 	public function email($v) {
-		if (!preg_match('/[^@]+@[a-zA-Z0-9_-]+\.[a-z]+/', $v))
+		if (
+		 	preg_match('/\s/', $v) ||
+			!preg_match('/[^@]+@[a-zA-Z0-9_-]+\.[a-z]+/', $v)
+		)
 			return 'NOTMAIL';
 
 		return true;
