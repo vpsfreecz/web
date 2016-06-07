@@ -2,8 +2,26 @@ body {
   padding: 70px 0px 70px 0px;
 }
 
+a {
+	text-decoration: underline;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
 .nav a {
 	outline: none;
+	text-decoration: none;
+}
+
+.navbar-brand {
+	padding: 5.5px 15px;
+}
+
+.panel-heading h2 {
+	color: #1F3959;
+	font-size: 1.5em;
 }
 
 .orange {
