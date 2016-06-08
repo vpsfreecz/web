@@ -4,9 +4,7 @@ require "rspec"
 include RSpec::Expectations
 
 describe "vpsFree.cz registration form" do
-	#URL = 'https://dev.vpsfree.cz'
-	#URL = 'https://vpsfree.cz'
-	URL = 'http://vpsfree-ng.cz'
+	URL = 'https://vpsfree.cz'
 
 	ENTITIES = {
 			fyzicka: %i(login first_name surname birth address city zip country email),
