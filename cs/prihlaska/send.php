@@ -16,20 +16,7 @@ $f = new RegistrationForm('cs', $db, $_POST);
 $f->validate();
 
 if (!$f->isValid()) {
-	virtual('/prihlaska/hlavicka.html');
-	echo '<form action="/prihlaska/send.php" method="post">';
-
-	foreach ($f->getErrors() as $field => $errors) {
-		echo '<div class="alert alert-danger" role="alert">';
-		echo $f->getLabel($field).': '.implode('; ', $errors);
-		echo '</div>';
-	}
-
-	echo '<input type="hidden" name="entity_type" value="'.$_POST['entity_type'].'">';
-	include $f->getEntityType().'-osoba/form.php';
-
-	echo '</form>';
-	virtual('/prihlaska/paticka.html');
+	$f->printErrors();
 	exit;
 }
 
@@ -39,8 +26,10 @@ if ($f->isValidationTest()) {
 }
 
 $registration = new Registration('cs', $db, $f->getData());
-$registration->register();
 
-// TODO: error checking?
+if (!$registration->register()) {
+	$f->printErrors(array('EFAILED'));
+	exit;
+}
 
 header('Location: /prihlaska/prijata/');

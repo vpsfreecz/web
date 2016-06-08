@@ -31,6 +31,30 @@ class RegistrationForm {
 		return $TR[$this->lang]['form']['errors'][$e];
 	}
 
+	public function printErrors($additionalErrors = array()) {
+		virtual('/prihlaska/hlavicka.html');
+		echo '<form action="/prihlaska/send.php" method="post">';
+
+		foreach ($additionalErrors as $error) {
+			$tr = $this->trError($error);
+			echo '<div class="alert alert-danger" role="alert">';
+			echo $tr ? $tr : $error;
+			echo '</div>';
+		}
+
+		foreach ($this->errors as $field => $errors) {
+			echo '<div class="alert alert-danger" role="alert">';
+			echo $this->getLabel($field).': '.implode('; ', $errors);
+			echo '</div>';
+		}
+
+		echo '<input type="hidden" name="entity_type" value="'.$this->getEntityType().'">';
+		include $this->getEntityType().'-osoba/form.php';
+
+		echo '</form>';
+		virtual('/prihlaska/paticka.html');
+	}
+
 	public function getLabel($field) {
 		global $TR;
 

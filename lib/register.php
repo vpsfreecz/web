@@ -12,9 +12,13 @@ class Registration {
 	}
 
 	public function register() {
-		$this->save();
+		if (!$this->save())
+			return false;
+
 		$this->mailAdmins();
 		$this->mailApplicant();
+
+		return true;
 	}
 
 	public function save() {
@@ -24,7 +28,7 @@ class Registration {
 		if ($this->data['entity_type'] == 'pravnicka')
 			$this->name = $this->data["org_name"]." (IČ ".$this->data["ic"]."), ".$this->name;
 
-		$this->db->query("
+		$ret = $this->db->query("
 			INSERT INTO members_changes SET
 				m_created = ".$this->created.",
 				m_type = 'add',
@@ -46,7 +50,12 @@ class Registration {
 				m_last_mail_id = 1
 		");
 
+		if (!$ret)
+			return false;
+
 		$this->request_id = $this->db->insert_id();
+
+		return true;
 	}
 
 	public function mailAdmins() {

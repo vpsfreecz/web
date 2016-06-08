@@ -31,6 +31,7 @@ $TR = array(
 				'NOTBIRTH' => 'nepřijatelný rok narození',
 				'NOHOUSEN' => 'chybí číslo popisné',
 				'EEXISTS' => 'tato hodnota už je použita, zvol prosím jinou',
+				'EFAILED' => 'Přihlášku se nepodařilo uložit. Zkus to prosím znovu, případně napiš na podpora@vpsfree.cz.',
 			)
 		),
 		'mail' => function ($data) {
