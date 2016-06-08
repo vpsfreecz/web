@@ -50,6 +50,13 @@
 			success: function (data) {
 				$('#form-placeholder').html(data);
 				restoreState();
+			},
+			error: function (xhr, textStatus) {
+				$('#form-placeholder').html(
+					'<p>'+
+					'Unable to display the form, please try again or contact podpora@vpsfree.cz'+
+					'</p>'
+				);
 			}
 		});
 	}
