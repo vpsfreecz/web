@@ -15,7 +15,7 @@ aliased within the document roots.
 
 Copy `config.php.dist` to `config.php` and fill in the credentials to the
 database. For testing the registration form, you need several database tables:
-`members`, `cfg_templates`, `servers` and `cfg_locations`.
+`members`, `cfg_templates`, `servers` and `locations`.
 
 ```sql
 CREATE TABLE IF NOT EXISTS `cfg_templates` (
@@ -52,35 +52,35 @@ submitted, as that requires more tables from vpsAdmin.
 
 ```apache
 <VirtualHost *:80>
-        ServerName vpsfree.cz
-        DocumentRoot /var/www/web/cs
+	ServerName vpsfree.cz
+	DocumentRoot /var/www/web/cs
 
-        Alias /css /var/www/web/css
-        Alias /js /var/www/web/js
-        Alias /obrazky /var/www/web/obrazky
-        Alias /download /var/www/web/download
+	Alias /css /var/www/web/css
+	Alias /js /var/www/web/js
+	Alias /obrazky /var/www/web/obrazky
+	Alias /download /var/www/web/download
 
-        <Directory /var/www/web/cs>
-                Options +Includes
-                AddOutputFilter INCLUDES .html
-								SetEnv no-gzip
-        </Directory>
+	<Directory /var/www/web/cs>
+		Options +Includes
+		AddOutputFilter INCLUDES .html
+		SetEnv no-gzip
+	</Directory>
 </VirtualHost>
 
 <VirtualHost *:80>
-        ServerName vpsfree.org
-        DocumentRoot /var/www/web/en
-        
-				Alias /css /var/www/web/css
-        Alias /js /var/www/web/js
-        Alias /obrazky /var/www/web/obrazky
-        Alias /download /var/www/web/download
+	ServerName vpsfree.org
+	DocumentRoot /var/www/web/en
 
-        <Directory /var/www/web/en>
-                Options +Includes
-                AddOutputFilter INCLUDES .html
-								SetEnv no-gzip
-        </Directory>
+	Alias /css /var/www/web/css
+	Alias /js /var/www/web/js
+	Alias /obrazky /var/www/web/obrazky
+	Alias /download /var/www/web/download
+
+	<Directory /var/www/web/en>
+		Options +Includes
+		AddOutputFilter INCLUDES .html
+		SetEnv no-gzip
+	</Directory>
 </VirtualHost>
 ```
 
