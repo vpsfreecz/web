@@ -64,6 +64,7 @@ submitted, as that requires more tables from vpsAdmin.
 		Options +Includes
 		AddOutputFilter INCLUDES .html
 		SetEnv no-gzip
+		ErrorDocument 404 /404.html
 	</Directory>
 </VirtualHost>
 
@@ -80,6 +81,7 @@ submitted, as that requires more tables from vpsAdmin.
 		Options +Includes
 		AddOutputFilter INCLUDES .html
 		SetEnv no-gzip
+		ErrorDocument 404 /404.html
 	</Directory>
 </VirtualHost>
 ```
