@@ -49,6 +49,8 @@ class RegistrationForm {
 		}
 
 		echo '<input type="hidden" name="entity_type" value="'.$this->getEntityType().'">';
+
+		$f = $this;
 		include $this->getEntityType().'-osoba/form.php';
 
 		echo '</form>';
