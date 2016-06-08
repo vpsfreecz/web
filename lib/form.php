@@ -202,6 +202,12 @@ class Validators {
 		if (!preg_match('/^[a-zA-Z0-9\-\.]{2,63}$/', $v))
 			$ret[] = 'NOTLOGIN';
 
+		if (preg_match('/\.\./', $v))
+			$ret[] = 'TWODOTS';
+
+		if (preg_match('/--/', $v))
+			$ret[] = 'TWOHYPHENS';
+
 		$rs = $this->db->query("
 			SELECT m_nick
 			FROM members
@@ -241,7 +247,8 @@ class Validators {
 	public function email($v) {
 		if (
 		 	preg_match('/\s/', $v) ||
-			!preg_match('/[^@]+@[a-zA-Z0-9_-]+\.[a-z]+/', $v)
+			!preg_match('/[^@]+@[a-zA-Z0-9_-]+\.[a-z]+/', $v) ||
+			preg_match('/\.\./', $v)
 		)
 			return 'NOTMAIL';
 

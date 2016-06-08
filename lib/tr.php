@@ -30,6 +30,8 @@ $TR = array(
 				'NOTMAIL' => 'není platná e-mailová adresa',
 				'NOTBIRTH' => 'nepřijatelný rok narození',
 				'NOHOUSEN' => 'chybí číslo popisné',
+				'TWODOTS' => 'nesmí obsahovat dvě tečky zasebou',
+				'TWOHYPHENS' => 'nesmí obsahovat dvě pomlčky zasebou',
 				'EEXISTS' => 'tato hodnota už je použita, zvol prosím jinou',
 				'EFAILED' => 'Přihlášku se nepodařilo uložit. Zkus to prosím znovu, případně napiš na podpora@vpsfree.cz.',
 			)
