@@ -115,8 +115,13 @@ class sql_db {
 	$this->pass = $pass;
 	$this->name = $name;
   $this->sock = $sock;
-  if ($this->db->connect_errno)
-		die ('Unable to connect to the database. Error: '.$this->db->errno.' '.$this->db->error);
+  if ($this->db->connect_errno) {
+		//die ('Unable to connect to the database. Error: '.$this->db->errno.' '.$this->db->error);
+		die (
+			'Unable to connect to the database, the form cannot be submitted at the moment. '.
+			'Please try again later.'
+		);
+	}
 	
 	$this->query('SET NAMES UTF8');
 
@@ -280,7 +285,7 @@ class sql_db {
 			$out = false;
 	} else {
 	    $out = $this->db->query($sql);
-	    if($this->db->errno) {
+			if($this->db->errno) {
 			$out = false;
 		}
 	}
