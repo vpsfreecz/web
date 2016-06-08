@@ -330,6 +330,9 @@ class Validators {
 	public function ic($v) {
 		$v = preg_replace('/\s/', '', $v);
 		
+		if (strlen($v) < 6)
+			return 'LEN_6';
+		
 		if (preg_match('/\D/', $v))
 			return 'NUMONLY';
 

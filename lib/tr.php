@@ -24,6 +24,7 @@ $TR = array(
 				'NOTEMPTY' => 'musí být vyplněno',
 				'NOTSELECTED' => 'vyber některou z nabízených voleb',
 				'LEN_2' => 'musí mít minimálně 2 znaky',
+				'LEN_6' => 'musí mít minimálně 6 znaků',
 				'NOTNUM' => 'nemůže obsahovat číslo',
 				'NUMONLY' => 'může obsahovat pouze číclice 0-9',
 				'NOTLOGIN' => 'může obsahovat pouze znaky a-z, A-Z, 0-9, pomlčka a tečka, 2 až 63 znaků',
