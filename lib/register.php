@@ -89,7 +89,7 @@ class Registration {
 
 		$application = '
         Login: '.$this->data["login"].'
-         Name: '.$this->data["first_name"].' '.$this->data["surname"].'
+         Name: '.$this->name.'
         Email: '.$this->data["email"].'
        Adresa: '.$this->data["address"].", ".$this->data["zip"]." ".$this->data["city"].", ".$this->data["country"].'
 Year of birth: '.$this->data["birth"].'
