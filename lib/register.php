@@ -44,6 +44,7 @@ class Registration {
 				m_distribution = '".$this->db->check($this->data["distribution"])."',
 				m_location = '".$this->db->check($this->data["location"])."',
 				m_currency = '".$this->db->check($this->data["currency"])."',
+				m_language = '".$this->lang."',
 				m_reason = '',
 				m_addr = '".$this->db->check($_SERVER["REMOTE_ADDR"])."',
 				m_addr_reverse = '".$this->db->check(gethostbyaddr($_SERVER["REMOTE_ADDR"]))."',
@@ -97,6 +98,7 @@ Year of birth: '.$this->data["birth"].'
           How: '.$this->data["how"].'
          Note: '.$this->data["note"].'
      Currency: '.$this->data["currency"].'
+     Language: '.$this->lang.'
  Distribution: '.$distro["templ_id"].' '.$distro["templ_label"].'
      Location: '.$location["location_id"].' '.$location["location_label"].'
 		';
