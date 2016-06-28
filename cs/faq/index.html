@@ -6,62 +6,218 @@
 
 <h1 class="text-center">Nejčastější dotazy</h1>
 
-<p class="text-uppercase"><strong>Zapomněl jsem login/heslo do vpsAdmina, co s tím?</strong></p>
-
-<p>Stačí napsat na <a href="mailto:podpora@vpsfree.cz">podporu</a> z mailu, který máš uveden ve vpsAdminu a heslo Ti bude obnoveno.</p>
-
-<p class="text-uppercase"><strong>Chtěl bych mít na svém VPS Windows server, případně jiný systém. Je to možné?</strong></p>
-
-<p>Možné to je při zapnutí plné virtualizace s KVM. Připravili jsme <a href="https://kb.vpsfree.cz/navody/vps/kvm" target="_blank">podrobný návod</a>.</p>
-
-<p class="text-uppercase"><strong>Potřeboval bych další VPS. Je to možné?</strong></p>
-
-<p>Samozřejmě ano. Stačí nám napsat na podporu.</p>
-
-<p class="text-uppercase"><strong>Nestačí mi RAM nebo HDD. Dá se přikoupit?</strong></p>
-
-<p>VPS lze pouze zdvoj-/trojnásobit za dvoj-/trojnásobný členský příspěvek. Je tedy možné mít 8 GB RAM a 240 GB HDD nebo 12 GB RAM a 360 GB HDD. Případně místo na HDD lze samostatně přikoupit za 2 Kč/GB.</p>
-
-<p class="text-uppercase"><strong>Potřeboval bych vystavit fakturu, jak na to?</strong></p>
-
-<p>Pošli nám prosím své fakturační údaje na podporu a vystavíme Ti ji. O fakturu musíš pokaždé požádat na podpoře, stačí vždy odpovědět na upomínku od vpsAdmina.</p>
-
-<p class="text-uppercase"><strong>Potřebuji nastavit reverzní záznam, jak na to?</strong></p>
-
-<p>Napiš nám prosím na podporu a my záznam zřídíme. Detaily najdeš mezi <a href="https://kb.vpsfree.cz/navody/vps/rdns" target="_blank">našimi návody</a>.</p>
-
-<p class="text-uppercase"><strong>Na jakou doménu si nechat správně nastavit reverzní záznam a co to je?</strong></p>
-
-<p>Přečti si <a href="https://kb.vpsfree.cz/navody/vps/rdns" target="_blank">záznam o reverzních záznamech</a> a <a href="https://kb.vpsfree.cz/navody/server/postfix" target="_blank">návod k poštovnímu serveru</a> na naší znalostní bázi.</p>
-
-<p class="text-uppercase"><strong>Potřeboval bych prodloužit playground VPS, jak na to?</strong></p>
-
-<p>Napiš nám prosím na podporu.</p>
-
-<p class="text-uppercase"><strong>Chtěl bych mít na VPS svojí verzi jádra, jde to? </strong></p>
-
-<p>Používáme na svých serverech <a href="https://kb.vpsfree.cz/informace/openvz" target="_blank">kontejnerovou technologii OpenVZ</a>. To znamená, že všichni uživatelé sdílí jedno společné jádro. Pokud skutečně nutně potřebuješ vlastní jádro, musíš použít <a href="https://kb.vpsfree.cz/navody/vps/kvm" target="_blank">plnou virtualizaci s KVM</a>.</p>
-
-<p class="text-uppercase"><strong>Chtěl bych si na svém VPS rozjet Docker, jde to?</strong></p>
-
-<p>Ano, Docker zprovozníš podle <a href="https://kb.vpsfree.cz/navody/server/docker_debian" target="_blank">našeho návodu</a>.</p>
-
-<p class="text-uppercase"><strong>Potřeboval bych přidělit swap u svého VPS, dá se to?</strong></p>
-
-<p>Lze to jen v případě, že bys potřeboval nainstalovat Oracle databázi. A to jen po dobu instalace. Oracle swap vyžaduje pouze při instalaci a poté jej už nekontroluje. Napiš nám v takovém případě prosím na podporu.</p>
-
-<p class="text-uppercase"><strong>Zjistil jsem, že mi nefunguje VPS, co s tím?</strong></p>
-
-<p>Přihlas se prosím k našemu <a href="https://kb.vpsfree.cz/informace/komunikace" target="_blank">outage-listu</a>, kam posíláme veškeré informace o plánovaných a neplánovaných výpadcích.</p>
-
-<p class="text-uppercase"><strong>Co když se zpozdím s platbou?</strong></p>
-
-<p>V takovém případě nám prosím napiš na podporu a domluvíme se co a jak. Důležité je napsat včas, aby ses vyhnul případnému pozastavení členství.</p>
-
-<p class="text-uppercase"><strong>Můžu se přihlásit také jako právnická osoba?</strong></p>
-
-<p>Ano, je to možné. <a href="/prihlaska/">Vyplň přihlášku</a> pro právnickou osobu a uveď jméno člověka, který se bude o VPS starat a komunikovat s námi. O fakturu prosím požádej na podpoře.</p>
-
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingfaq1">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#faq1" aria-expanded="false" aria-controls="faq1">
+          Zapomněl jsem login/heslo do vpsAdmina, co s tím?
+        </a>
+      </h4>
+    </div>
+    <div id="faq1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingfaq1">
+      <div class="panel-body">
+        Stačí napsat na <a href="mailto:podpora@vpsfree.cz">podporu</a> z mailu, který máš uveden ve vpsAdminu a heslo Ti bude obnoveno.
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingfaq2">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#faq2" aria-expanded="false" aria-controls="faq2">
+          Chtěl bych mít na svém VPS Windows server, případně jiný systém. Je to možné?
+        </a>
+      </h4>
+    </div>
+    <div id="faq2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingfaq2">
+      <div class="panel-body">
+        Možné to je při zapnutí plné virtualizace s KVM. Připravili jsme <a href="https://kb.vpsfree.cz/navody/vps/kvm" target="_blank">podrobný návod</a>.
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingfaq3">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#faq3" aria-expanded="false" aria-controls="faq3">
+          Potřeboval bych další VPS. Je to možné?
+        </a>
+      </h4>
+    </div>
+    <div id="faq3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingfaq3">
+      <div class="panel-body">
+        Samozřejmě ano. Stačí nám napsat na podporu.
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingfaq4">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#faq4" aria-expanded="false" aria-controls="faq4">
+          Nestačí mi RAM nebo HDD. Dá se přikoupit?
+        </a>
+      </h4>
+    </div>
+    <div id="faq4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingfaq4">
+      <div class="panel-body">
+        VPS lze pouze zdvoj-/trojnásobit za dvoj-/trojnásobný členský příspěvek. Je tedy možné mít 8 GB RAM a 240 GB HDD nebo 12 GB RAM a 360 GB HDD. Případně místo na HDD lze samostatně přikoupit za 2 Kč/GB.
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingfaq5">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#faq5" aria-expanded="false" aria-controls="faq5">
+          Potřeboval bych vystavit fakturu, jak na to?
+        </a>
+      </h4>
+    </div>
+    <div id="faq5" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingfaq5">
+      <div class="panel-body">
+        Pošli nám prosím své fakturační údaje na podporu a vystavíme Ti ji. O fakturu musíš pokaždé požádat na podpoře, stačí vždy odpovědět na upomínku od vpsAdmina.
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingfaq6">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#faq6" aria-expanded="false" aria-controls="faq6">
+          Potřebuji nastavit reverzní záznam, jak na to?
+        </a>
+      </h4>
+    </div>
+    <div id="faq6" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingfaq6">
+      <div class="panel-body">
+        Napiš nám prosím na podporu a my záznam zřídíme. Detaily najdeš mezi <a href="https://kb.vpsfree.cz/navody/vps/rdns" target="_blank">našimi návody</a>.
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingfaq7">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#faq7" aria-expanded="false" aria-controls="faq7">
+          Na jakou doménu si nechat správně nastavit reverzní záznam a co to je?
+        </a>
+      </h4>
+    </div>
+    <div id="faq7" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingfaq7">
+      <div class="panel-body">
+        Přečti si <a href="https://kb.vpsfree.cz/navody/vps/rdns" target="_blank">záznam o reverzních záznamech</a> a <a href="https://kb.vpsfree.cz/navody/server/postfix" target="_blank">návod k poštovnímu serveru</a> na naší znalostní bázi.
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingfaq8">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#faq8" aria-expanded="false" aria-controls="faq8">
+          Potřeboval bych prodloužit playground VPS, jak na to?
+        </a>
+      </h4>
+    </div>
+    <div id="faq8" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingfaq8">
+      <div class="panel-body">
+        Napiš nám prosím na podporu.
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingfaq9">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#faq9" aria-expanded="false" aria-controls="faq9">
+          Chtěl bych mít na VPS svojí verzi jádra, jde to?
+        </a>
+      </h4>
+    </div>
+    <div id="faq9" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingfaq9">
+      <div class="panel-body">
+        Používáme na svých serverech <a href="https://kb.vpsfree.cz/informace/openvz" target="_blank">kontejnerovou technologii OpenVZ</a>. To znamená, že všichni uživatelé sdílí jedno společné jádro. Pokud skutečně nutně potřebuješ vlastní jádro, musíš použít <a href="https://kb.vpsfree.cz/navody/vps/kvm" target="_blank">plnou virtualizaci s KVM</a>.
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingfaq10">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#faq10" aria-expanded="false" aria-controls="faq10">
+          Chtěl bych si na svém VPS rozjet Docker, jde to?
+        </a>
+      </h4>
+    </div>
+    <div id="faq10" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingfaq10">
+      <div class="panel-body">
+        Ano, Docker zprovozníš podle <a href="https://kb.vpsfree.cz/navody/server/docker_debian" target="_blank">našeho návodu</a>.
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingfaq11">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#faq11" aria-expanded="false" aria-controls="faq11">
+          Potřeboval bych přidělit swap u svého VPS, dá se to?
+        </a>
+      </h4>
+    </div>
+    <div id="faq11" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingfaq11">
+      <div class="panel-body">
+        Lze to jen v případě, že bys potřeboval nainstalovat Oracle databázi. A to jen po dobu instalace. Oracle swap vyžaduje pouze při instalaci a poté jej už nekontroluje. Napiš nám v takovém případě prosím na podporu.
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingfaq12">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#faq12" aria-expanded="false" aria-controls="faq12">
+          Potřeboval bych přidělit swap u svého VPS, dá se to?
+        </a>
+      </h4>
+    </div>
+    <div id="faq12" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingfaq12">
+      <div class="panel-body">
+        Lze to jen v případě, že bys potřeboval nainstalovat Oracle databázi. A to jen po dobu instalace. Oracle swap vyžaduje pouze při instalaci a poté jej už nekontroluje. Napiš nám v takovém případě prosím na podporu.
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingfaq13">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#faq13" aria-expanded="false" aria-controls="faq13">
+          Zjistil jsem, že mi nefunguje VPS, co s tím?
+        </a>
+      </h4>
+    </div>
+    <div id="faq13" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingfaq13">
+      <div class="panel-body">
+        Přihlas se prosím k našemu <a href="https://kb.vpsfree.cz/informace/komunikace" target="_blank">outage-listu</a>, kam posíláme veškeré informace o plánovaných a neplánovaných výpadcích.
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingfaq14">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#faq14" aria-expanded="false" aria-controls="faq14">
+          Co když se zpozdím s platbou?
+        </a>
+      </h4>
+    </div>
+    <div id="faq14" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingfaq14">
+      <div class="panel-body">
+        V takovém případě nám prosím napiš na podporu a domluvíme se co a jak. Důležité je napsat včas, aby ses vyhnul případnému pozastavení členství.
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingfaq15">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#faq15" aria-expanded="false" aria-controls="faq15">
+          Můžu se přihlásit také jako právnická osoba?
+        </a>
+      </h4>
+    </div>
+    <div id="faq15" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingfaq15">
+      <div class="panel-body">
+        Ano, je to možné. <a href="/prihlaska/">Vyplň přihlášku</a> pro právnickou osobu a uveď jméno člověka, který se bude o VPS starat a komunikovat s námi. O fakturu prosím požádej na podpoře.
+      </div>
+    </div>
+  </div>
 </div>
+
 
 <!--#include virtual="/paticka.html" -->
