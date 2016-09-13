@@ -25,7 +25,7 @@ if ($f->isValidationTest()) {
 	exit;
 }
 
-$registration = new Registration('cs', $db, $f->getData());
+$registration = new Registration('en', $db, $f->getData());
 
 if (!$registration->register()) {
 	$f->printErrors(array('EFAILED'));

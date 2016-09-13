@@ -97,7 +97,7 @@ vpsFree.cz
 			$sub = '[vpsFree.cz] Registration accepted';
 			$body = 'Hi '.$data["login"].',
 
-Your registration form has been accepted and it will be delivered to board for validation. We will contact you in 24 hours.
+Your registration form has been accepted and it will be delivered to the board for validation. We will contact you within 24 hours.
 If this will not happen please contact us on podpora@vpsfree.cz.
 
 In the meantime we recommend you to read carefully our web https://www.vpsfree.cz.
@@ -105,7 +105,7 @@ You can find more info at https://kb.vpsfree.cz/informace/novacci.
 Our Knowledge base is collection of very useful information and it is good to know about it:
 https://kb.vpsfree.cz
 
-We appreciate your concern,
+We appreciate your interest,
 
 vpsFree.cz
 ';
