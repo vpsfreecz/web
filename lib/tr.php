@@ -56,4 +56,60 @@ vpsFree.cz
 			return array($sub, $body);
 		}
 	),
+	'en' => array(
+		'form' => array(
+			'fields' => array(
+				'login' => 'Login name',
+				'first_name' => 'First name',
+				'surname' => 'Surname',
+				'email' => 'E-mail',
+				'birth' => 'Year of birth',
+				'address' => 'Street, number',
+				'zip' => 'ZIP',
+				'city' => 'City',
+				'country' => 'State',
+				'how' => 'How did you find us?',
+				'note' => 'Notes',
+				'distribution' => 'Choose your distro',
+				'location' => 'Preferred location for your VPS',
+				'currency' => 'Currency for member fees',
+				'org_name' => 'Copmpany name',
+				'ic' => 'ID',
+			),
+			'errors' => array(
+				'NOTEMPTY' => 'must be filled',
+				'NOTSELECTED' => 'choose one option',
+				'LEN_2' => 'must contain at least 2 characters',
+				'LEN_6' => 'must contain at least 6 characters',
+				'NOTNUM' => 'cannot contain numbers',
+				'NUMONLY' => 'can contain only numbers 0-9',
+				'NOTLOGIN' => 'can contain only characters a-z, A-Z, 0-9, dash and dot, 2 to 63 chars',
+				'NOTMAIL' => 'it is not valid mail address',
+				'NOTBIRTH' => 'unacceptable year of birth',
+				'NOHOUSEN' => 'ZIP is missing',
+				'TWODOTS' => 'cannot contain two dots in a row',
+				'TWOHYPHENS' => 'cannot contain two dashes in a row',
+				'EEXISTS' => 'this value is already used, choose another',
+				'EFAILED' => 'We cannot save your registration. Please try again or contact support: podpora@vpsfree.cz.',
+			)
+		),
+		'mail' => function ($data) {
+			$sub = '[vpsFree.cz] Registration accepted';
+			$body = 'Hi '.$data["login"].',
+
+Your registration form has been accepted and it will be delivered to board for validation. We will contact you in 24 hours.
+If this will not happen please contact us on podpora@vpsfree.cz.
+
+In the meantime we recommend you to read carefully our web https://www.vpsfree.cz.
+You can find more info at https://kb.vpsfree.cz/informace/novacci.
+Our Knowledge base is collection of very useful information and it is good to know about it:
+https://kb.vpsfree.cz
+
+We appreciate your concern,
+
+vpsFree.cz
+';
+			return array($sub, $body);
+		}
+	),
 );
