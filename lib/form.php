@@ -32,8 +32,8 @@ class RegistrationForm {
 	}
 
 	public function printErrors($additionalErrors = array()) {
-		virtual('/prihlaska/hlavicka.html');
-		echo '<form action="/prihlaska/send.php" method="post">';
+		virtual('./hlavicka.html');
+		echo '<form action="./send.php" method="post">';
 
 		foreach ($additionalErrors as $error) {
 			$tr = $this->trError($error);
@@ -54,7 +54,7 @@ class RegistrationForm {
 		include $this->getEntityType().'-osoba/form.php';
 
 		echo '</form>';
-		virtual('/prihlaska/paticka.html');
+		virtual('./paticka.html');
 	}
 
 	public function getLabel($field) {
