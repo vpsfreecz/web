@@ -48,12 +48,14 @@ if (!$db)
 	<div class="col-xs-12 form-group">
 		<?php
 			$opts = array();
-			$sql = 'SELECT location_id, location_label
+			$sql = "SELECT location_id, location_label
 					FROM locations l
-					INNER JOIN servers s ON l.location_id = s.server_location
-					WHERE s.environment_id = '.$db->check(ENVIRONMENT_ID).'
+					INNER JOIN servers s ON s.server_location = l.location_id
+					WHERE
+						environment_id = ".$db->check(ENVIRONMENT_ID)."
+						AND server_type = 'node'
 					GROUP BY location_id
-					ORDER BY location_id';
+					ORDER BY location_id";
 			$rs = $db->query($sql);
 			while ($loc = $db->fetch_array($rs)) {
 				$opts[ $loc['location_id'] ] = 'Master Internet '.$loc['location_label'];
