@@ -254,6 +254,20 @@ class Validators {
 		)
 			return 'NOTMAIL';
 
+		// Test whether this mail uses MS mail servers
+		$domain = substr($v, strpos($v, '@') + 1);
+		$mail_servers = dns_get_record($domain, DNS_MX);
+
+		if ($mail_servers === false) {
+			// No MX record means MS server is not used
+			return true;
+		}
+
+		foreach ($mail_servers as $mail_server) {
+			if (preg_match('/hotmail\.com$/', $mail_server['target']))
+				return 'EHOTMAIL';
+		}
+
 		return true;
 	}
 

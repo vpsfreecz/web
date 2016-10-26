@@ -137,6 +137,10 @@ describe "vpsFree.cz registration form" do
         'test @ tld.cz',
         'test@tld..cz',
         'test..dva@tld.cz',
+        'nekdo@hotmail.com',
+        'nekdo@hotmail.cz',
+        'nekdo@outlook.com',
+        'nekdo@outlook.cz',
       ],
       true => [
         'test@tld.cz',
