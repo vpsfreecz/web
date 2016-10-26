@@ -152,6 +152,8 @@ describe "vpsFree.cz registration form" do
         'test22@tld.cz',
         'test.22@tld.cz',
         '22test@tld.cz',
+        'nekdo@seznam.cz',
+        'nekdo@gmail.com',
       ],
     },
     org_name: {
