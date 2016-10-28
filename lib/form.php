@@ -138,8 +138,7 @@ class RegistrationForm {
 
 		$fields = array(
 			'login',
-			'first_name',
-			'surname',
+			'name',
 			'email',
 			'birth',
 			'address',
@@ -222,19 +221,7 @@ class Validators {
 		return $ret;
 	}
 
-	public function first_name($v) {
-		$ret = array();
-
-		if (strlen($v) < 2)
-			$ret[] = 'LEN_2';
-
-		if (preg_match('/\d/', $v))
-			$ret[] = 'NOTNUM';
-
-		return $ret;
-	}
-
-	public function surname($v) {
+	public function name($v) {
 		$ret = array();
 
 		if (strlen($v) < 2)

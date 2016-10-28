@@ -23,7 +23,7 @@ class Registration {
 
 	public function save() {
 		$this->created = time();
-		$this->name = $this->data["first_name"]." ".$this->data["surname"];
+		$this->name = $this->data["name"];
 
 		if ($this->data['entity_type'] == 'pravnicka')
 			$this->name = $this->data["org_name"]." (IČ ".$this->data["ic"]."), ".$this->name;

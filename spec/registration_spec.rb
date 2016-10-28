@@ -7,14 +7,13 @@ describe "vpsFree.cz registration form" do
   URL = 'https://vpsfree.cz'
 
   ENTITIES = {
-    fyzicka: %i(login first_name surname birth address city zip country email),
-    pravnicka: %i(login first_name surname birth org_name ic address city zip country email),
+    fyzicka: %i(login name birth address city zip country email),
+    pravnicka: %i(login name birth org_name ic address city zip country email),
   }
 
   BASE_DATA = {
     login: 'testovac',
-    first_name: 'Testik',
-    surname: 'Testovic',
+    name: 'Testik Testovic',
     birth: 1990,
     address: 'Na Ulici 173',
     city: 'Ve Meste',
@@ -47,7 +46,7 @@ describe "vpsFree.cz registration form" do
         'a' * 63,
       ],
     },
-    first_name: {
+    name: {
       false => [
         'a',
         ' ' * 3,
@@ -58,18 +57,9 @@ describe "vpsFree.cz registration form" do
         'Илья́',
         'Алекса́ндрович',
         '立显荣朝士',
-      ],
-    },
-    surname: {
-      false => [
-        'a',
-        ' ' * 3,
-      ],
-      true => [
-        'aa',
-        'aaa',
-        'Ежо́в',
-        '文方运际祥',
+        'nekdo jiny',
+        'Nekdo Jiny',
+        'nekdo muze mit vice jmen',
       ],
     },
     birth: {

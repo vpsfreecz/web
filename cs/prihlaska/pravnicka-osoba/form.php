@@ -13,12 +13,8 @@ if (!$f)
 
 <label for="first_name">Kontaktní osoba</label>
 <div class="row form-group">
-	<div class="col-xs-6">
-		<?php $f->input('first_name'); ?>
-	</div>
-
-	<div class="col-xs-6">
-		<?php $f->input('surname'); ?>
+	<div class="col-xs-12">
+		<?php $f->input('name'); ?>
 	</div>
 </div>
 
