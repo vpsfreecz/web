@@ -81,7 +81,7 @@ class RegistrationForm {
 			id="'.$name.'"
 			name="'.$name.'"
 			placeholder="'.$this->getLabel($name).'"
-			value="'.(isset($_POST[$name]) ? $_POST[$name] : '').'"
+			value="'.htmlspecialchars(isset($_POST[$name]) ? $_POST[$name] : '').'"
 			class="form-control '.($this->isValid($name) ? '' : 'error').'" ';
 
 		foreach ($attrs as $k => $v)
