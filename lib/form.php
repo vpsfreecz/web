@@ -157,7 +157,7 @@ class RegistrationForm {
 			$fields[] = 'ic';
 		}
 		
-		$v = new Validators($this->db, $fields);
+		$v = new Validators($this->db, $this->lang, $fields);
 		$v->validate($this->data);
 
 		foreach ($v->errors as $field => $errors) {
@@ -174,8 +174,9 @@ class Validators {
 	public $fields;
 	private $db;
 
-	public function __construct($db, $fields) {
+	public function __construct($db, $lang, $fields) {
 		$this->db = $db;
+		$this->lang = $lang;
 		$this->fields = $fields;
 	}
 
@@ -277,6 +278,10 @@ class Validators {
 		if (strlen($v) < 2)
 			$ret[] = 'LEN_2';
 
+		# No more validations for English form
+		if ($this->lang === 'en')
+			return $ret;
+
 		if (!preg_match('/\d/', $v))
 			$ret[] = 'NOHOUSEN';
 
@@ -302,6 +307,10 @@ class Validators {
 
 		if (!$v)
 			$ret[] = 'NOTEMPTY';
+		
+		# No more validations for English form
+		if ($this->lang === 'en')
+			return $ret;
 
 		if (preg_match('/\D/', $v))
 			$ret[] = 'NUMONLY';

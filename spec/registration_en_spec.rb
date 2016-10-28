@@ -3,15 +3,15 @@ require "selenium-webdriver"
 require "rspec"
 include RSpec::Expectations
 
-describe "vpsFree.cz registration form" do
-  URL = 'https://vpsfree.cz'
+describe "vpsFree.cz EN registration form" do
+  self::URL = 'https://vpsfree.org'
 
-  ENTITIES = {
+  self::ENTITIES = {
     fyzicka: %i(login name birth address city zip country email),
     pravnicka: %i(login name birth org_name ic address city zip country email),
   }
 
-  BASE_DATA = {
+  self::BASE_DATA = {
     login: 'testovac',
     name: 'Testik Testovic',
     birth: 1990,
@@ -24,7 +24,7 @@ describe "vpsFree.cz registration form" do
     ic: 12365498,
   }
 
-  FIELD_TESTS = {
+  self::FIELD_TESTS = {
     # field => { true => [values that pass], false => [values that do not pass] }
     login: {
       false => [
@@ -87,6 +87,8 @@ describe "vpsFree.cz registration form" do
         'Ulice 4',
         'Ulice 987',
         'Na Ulici 123',
+        'Kdekoliv',
+        'ul. "with quotes" 13',  # used e.g. in Bulgaria
       ],
     },
     city: {
@@ -113,6 +115,8 @@ describe "vpsFree.cz registration form" do
       true => [
         '12345',
         '123 45',
+        '12AB56CD',  # post codes e.g. in the UK contain characters
+        '12 AB CD 56',
       ],
     },
     email: {
@@ -194,7 +198,7 @@ describe "vpsFree.cz registration form" do
   end
 
   def enter
-    @driver.get("#{URL}/prihlaska/")
+    @driver.get("#{self.class::URL}/registration/")
   end
 
   def select_entity(e)
@@ -206,7 +210,7 @@ describe "vpsFree.cz registration form" do
   end
 
   def self.get_field_data(fields)
-    Hash[ BASE_DATA.clone.select { |k, v| fields.include?(k) } ]
+    Hash[ self::BASE_DATA.clone.select { |k, v| fields.include?(k) } ]
   end
 
   def write_fields(fields)
@@ -243,7 +247,7 @@ describe "vpsFree.cz registration form" do
           '<input type="hidden" id="_mock" name="_mock" value="1">'
         );
 END
-                          )
+    )
   end
 
   def expect_ok
@@ -253,14 +257,14 @@ END
 
     expect(
       @driver.find_element(:css, 'h1').text
-    ).to eq('Přihláška přijata, děkujeme!')
+    ).to eq('Registration form was saved, thank you!')
   end
 
   def get_classes(field)
     @driver.find_element(:id, field.to_s).attribute('class').split(/\s+/)
   end
 
-  ENTITIES.each do |entity, fields|
+  self::ENTITIES.each do |entity, fields|
     it 'has required fields' do
       select_entity(entity)
       submit
@@ -275,9 +279,9 @@ END
     end
 
     fields.each do |f|
-      next unless FIELD_TESTS.include?(f)
+      next unless self::FIELD_TESTS.include?(f)
 
-      FIELD_TESTS[f].each do |pass, values|
+      self::FIELD_TESTS[f].each do |pass, values|
         values.each do |v|
           data = get_field_data(fields)
 
