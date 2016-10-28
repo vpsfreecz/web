@@ -70,8 +70,8 @@ if (!$db)
 	<div class="col-xs-12 form-group">
 		<?php
 			$f->select('currency', array(
-				'czk' => '900 Kč/three months',
-				'eur' => '36 €/three months',
+				'czk' => '900 CZK/three months',
+				'eur' => '36 EUR/three months',
 			));
 		?>
 	</div>
