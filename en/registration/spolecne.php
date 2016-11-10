@@ -75,7 +75,7 @@ if (!$db)
 			));
 		?>
 	</div>
-<p>If you need an invoice, please send billing information to our <a href="/contact/">support</a>.</p>
+<p>If you need an invoice, please send billing information to our <a href="/contact/">support team</a>.</p>
 </div>
 
 
