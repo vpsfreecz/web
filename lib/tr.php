@@ -98,11 +98,11 @@ vpsFree.cz
 			$body = 'Hi '.$data["login"].',
 
 Your registration form has been accepted and it will be delivered to the board for validation. We will contact you within 24 hours.
-If this will not happen please contact us on podpora@vpsfree.cz.
+If you do not hear from us by then please contact us at podpora@vpsfree.cz.
 
-In the meantime we recommend you to read carefully our web https://www.vpsfree.cz.
+In the meantime we recommend for you to carefully read our website https://www.vpsfree.org.
 You can find more info at https://kb.vpsfree.cz/informace/novacci.
-Our Knowledge base is collection of very useful information and it is good to know about it:
+Our Knowledge base is a collection of very useful information and it is good to know about it:
 https://kb.vpsfree.cz
 
 We appreciate your interest,
