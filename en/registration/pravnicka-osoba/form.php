@@ -31,7 +31,7 @@ if (!$f)
 	</div>
 </div>
 
-<label for="name">Name and residence</label>
+<label for="name">Name and location of company</label>
 <div class="row">
 	<div class="col-xs-6 form-group">
 		<?php $f->input('org_name'); ?>
