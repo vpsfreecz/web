@@ -80,8 +80,6 @@ describe "vpsFree.cz EN registration form" do
         ' ' * 3,
         'a',
         'Aa',
-        'Ulice',
-        'Na Ulici',
       ],
       true => [
         'Ulice 4',
@@ -107,10 +105,6 @@ describe "vpsFree.cz EN registration form" do
     zip: {
       false => [
         ' ' * 5,
-        'abcd',
-        '12',
-        '1234',
-        '123456',
       ],
       true => [
         '12345',
