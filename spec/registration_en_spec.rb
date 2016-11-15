@@ -99,6 +99,7 @@ describe "vpsFree.cz EN registration form" do
         'Aš',
         'Cheb',
         'Valašské Meziříčí',
+        'Praha 6 - Suchdol',
         '東京',
       ],
     },
