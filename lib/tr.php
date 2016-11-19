@@ -101,9 +101,9 @@ Your registration form has been accepted and it will be delivered to the board f
 If you do not hear from us by then please contact us at podpora@vpsfree.cz.
 
 In the meantime we recommend for you to carefully read our website https://www.vpsfree.org.
-You can find more info at https://kb.vpsfree.cz/informace/novacci.
+You can find more info at https://kb.vpsfree.org/information/new_members.
 Our Knowledge base is a collection of very useful information and it is good to know about it:
-https://kb.vpsfree.cz
+https://kb.vpsfree.org
 
 We appreciate your interest,
 
