@@ -9,6 +9,7 @@ class Registration {
 		$this->lang = $lang;
 		$this->db = $db;
 		$this->data = $data;
+		$this->ip = null;
 	}
 
 	public function register() {
@@ -27,6 +28,8 @@ class Registration {
 
 		if ($this->data['entity_type'] == 'pravnicka')
 			$this->name = $this->data["org_name"]." (IČ ".$this->data["ic"]."), ".$this->name;
+		
+		$ip = $this->getClientIp();
 
 		$ret = $this->db->query("
 			INSERT INTO members_changes SET
@@ -46,8 +49,8 @@ class Registration {
 				m_currency = '".$this->db->check($this->data["currency"])."',
 				m_language = '".$this->lang."',
 				m_reason = '',
-				m_addr = '".$this->db->check($_SERVER["REMOTE_ADDR"])."',
-				m_addr_reverse = '".$this->db->check(gethostbyaddr($_SERVER["REMOTE_ADDR"]))."',
+				m_addr = '".$this->db->check($ip ? $ip : 'undetermined')."',
+				m_addr_reverse = '".$this->db->check($ip ? gethostbyaddr($ip) : '')."',
 				m_last_mail_id = 1
 		");
 
@@ -82,8 +85,11 @@ class Registration {
 		$text = str_replace("%admin%", "-", $text);
 		$text = str_replace("%reason%", "-", $text);
 		$text = str_replace("%admin_response%", "-", $text);
-		$text = str_replace("%ip%", $_SERVER["REMOTE_ADDR"], $text);
-		$text = str_replace("%ptr%", gethostbyaddr($_SERVER["REMOTE_ADDR"]), $text);
+		
+		$ip = $this->getClientIp();
+
+		$text = str_replace("%ip%", $ip ? $ip : 'undetermined', $text);
+		$text = str_replace("%ptr%", $ip ? gethostbyaddr($ip) : '', $text);
 
 		$distro = $this->db->findByColumnOnce("cfg_templates", "templ_id", $this->data["distribution"]);
 		$location = $this->db->findByColumnOnce("locations", "location_id", $this->data["location"]);
@@ -117,6 +123,28 @@ Year of birth: '.$this->data["birth"].'
 		list($subject, $text) = $fn($this->data);
 	
 		$this->sendMail($this->data["email"], $subject, $text);
+	}
+
+	private function getClientIp() {
+		if ($this->ip !== null)
+			return $this->ip;
+
+		if (array_key_exists('HTTP_X_FORWARDED_FOR', $_SERVER)) {
+			$ips = array_values(array_filter(explode(',', $_SERVER['HTTP_X_FORWARDED_FOR'])));
+
+			$this->ip = end($ips);
+
+		} else if (array_key_exists('REMOTE_ADDR', $_SERVER)) {
+			$this->ip = $_SERVER["REMOTE_ADDR"];
+
+		} else if (array_key_exists('HTTP_CLIENT_IP', $_SERVER)) {
+			$this->ip = $_SERVER["HTTP_CLIENT_IP"];
+
+		} else {
+			$this->ip = false;
+		}
+
+		return $this->ip;
 	}
 
 	private function cfg_get($key) {
