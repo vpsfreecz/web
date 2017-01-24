@@ -1,6 +1,0 @@
-filetype plugin indent on
-autocmd FileType html setlocal noexpandtab tabstop=2 softtabstop=2 shiftwidth=2
-autocmd FileType css setlocal noexpandtab tabstop=2 softtabstop=2 shiftwidth=2
-autocmd FileType javascript setlocal noexpandtab tabstop=2 softtabstop=2 shiftwidth=2
-autocmd FileType php setlocal noexpandtab tabstop=2 softtabstop=2 shiftwidth=2
-autocmd FileType ruby setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
