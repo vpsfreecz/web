@@ -20,6 +20,7 @@ $TR = array(
 				'ic' => 'IČ',
 			),
 			'errors' => array(
+				'REGFAILED' => 'Registrace se nezdařila',
 				'NOTEMPTY' => 'musí být vyplněno',
 				'NOTSELECTED' => 'vyber některou z nabízených voleb',
 				'LEN_2' => 'musí mít minimálně 2 znaky',
@@ -37,24 +38,6 @@ $TR = array(
 				'EFAILED' => 'Přihlášku se nepodařilo uložit. Zkus to prosím znovu, případně napiš na podpora@vpsfree.cz.',
 			)
 		),
-		'mail' => function ($data) {
-			$sub = '[vpsFree.cz] Přihláška přijata';
-			$body = 'Ahoj '.$data["login"].',
-
-Tvá přihláška byla přijata a bude předložena radě spolku ke schválení. Do 24 hodin Tě budeme kontaktovat.
-Pokud by se tak nestalo, obrať se prosím na podpora@vpsfree.cz.
-
-Mezitím doporučujeme, aby sis prošel důkladněji náš web na https://www.vpsfree.cz.
-Další informace, které nezbytně potřebuješ vědět, jsou na https://kb.vpsfree.cz/informace/novacci.
-A konečně, na naší Knowledge Base je kolekce krátkych návodů, které jsou pro vpsFree specifické, je dobré o nich aspoň mít přehled:
-https://kb.vpsfree.cz
-
-Vážíme si Tvého zájmu,
-
-vpsFree.cz
-';
-			return array($sub, $body);
-		}
 	),
 	'en' => array(
 		'form' => array(
@@ -76,6 +59,7 @@ vpsFree.cz
 				'ic' => 'ID',
 			),
 			'errors' => array(
+				'REGFAILED' => 'Registration failed',
 				'NOTEMPTY' => 'must be filled',
 				'NOTSELECTED' => 'choose one option',
 				'LEN_2' => 'must contain at least 2 characters',
@@ -93,23 +77,5 @@ vpsFree.cz
 				'EFAILED' => 'We cannot save your registration. Please try again or contact support: podpora@vpsfree.cz.',
 			)
 		),
-		'mail' => function ($data) {
-			$sub = '[vpsFree.cz] Registration accepted';
-			$body = 'Hi '.$data["login"].',
-
-Your registration form has been accepted and it will be delivered to the board for validation. We will contact you within 24 hours.
-If you do not hear from us by then please contact us at podpora@vpsfree.cz.
-
-In the meantime we recommend for you to carefully read our website https://www.vpsfree.org.
-You can find more info at https://kb.vpsfree.org/information/new_members.
-Our Knowledge base is a collection of very useful information and it is good to know about it:
-https://kb.vpsfree.org
-
-We appreciate your interest,
-
-vpsFree.cz
-';
-			return array($sub, $body);
-		}
 	),
 );

@@ -184,6 +184,7 @@ describe "vpsFree.cz CS/SK registration form" do
   before(:all) do
     @driver = Selenium::WebDriver.for(:firefox)
     @driver.manage.timeouts.implicit_wait = 5
+    sleep 10
   end
 
   after(:all) do
@@ -203,6 +204,10 @@ describe "vpsFree.cz CS/SK registration form" do
       @driver.find_element(:id, 'entity_type')
     )
     select.select_by(:value, e.to_s)
+
+    require 'pry'
+    binding.pry
+
     sleep(1)
   end
 

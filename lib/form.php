@@ -8,9 +8,8 @@ class RegistrationForm {
 	private $data;
 	private $entityType;
 
-	public function __construct($lang, $db = null, $data = null) {
+	public function __construct($lang, $data = null) {
 		$this->lang = $lang;
-		$this->db = $db;
 		$this->data = $this->clean($data);
 	}
 
@@ -31,15 +30,21 @@ class RegistrationForm {
 		return $TR[$this->lang]['form']['errors'][$e];
 	}
 
-	public function printErrors($additionalErrors = array()) {
+	public function printErrors($response = null) {
 		virtual('./hlavicka.html');
 		echo '<form action="./send.php" method="post">';
 
-		foreach ($additionalErrors as $error) {
-			$tr = $this->trError($error);
+		if ($response) {
 			echo '<div class="alert alert-danger" role="alert">';
-			echo $tr ? $tr : $error;
+			echo $this->trError('REGFAILED').': '.$response->getMessage();
 			echo '</div>';
+
+			foreach ($response->getErrors() as $param => $errors) {
+				$tr = $this->trError($error);
+				echo '<div class="alert alert-danger" role="alert">';
+				echo $this->getLabel($param).': '.implode(', ', $errors);
+				echo '</div>';
+			}
 		}
 
 		foreach ($this->errors as $field => $errors) {
@@ -157,7 +162,7 @@ class RegistrationForm {
 			$fields[] = 'ic';
 		}
 		
-		$v = new Validators($this->db, $this->lang, $fields);
+		$v = new Validators($this->lang, $fields);
 		$v->validate($this->data);
 
 		foreach ($v->errors as $field => $errors) {
@@ -174,8 +179,7 @@ class Validators {
 	public $fields;
 	private $db;
 
-	public function __construct($db, $lang, $fields) {
-		$this->db = $db;
+	public function __construct($lang, $fields) {
 		$this->lang = $lang;
 		$this->fields = $fields;
 	}
@@ -209,15 +213,6 @@ class Validators {
 
 		if (preg_match('/--/', $v))
 			$ret[] = 'TWOHYPHENS';
-
-		$rs = $this->db->query("
-			SELECT m_nick
-			FROM members
-			WHERE LOWER(m_nick) = '".$this->db->check(strtolower($v))."'"
-		);
-
-		if ($this->db->fetchArray($rs))
-			$ret[] = 'EEXISTS';
 
 		return $ret;
 	}

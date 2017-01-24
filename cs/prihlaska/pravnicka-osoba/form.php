@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__FILE__).'/../../../lib/form.php';
+require_once dirname(__FILE__).'/../../../lib/init.php';
 
 if (!$f)
 	$f = new RegistrationForm('cs');

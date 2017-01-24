@@ -1,10 +1,8 @@
 <?php
-require_once dirname(__FILE__).'/../../config.php';
-require_once dirname(__FILE__).'/../../lib/db.lib.php';
-require_once dirname(__FILE__).'/../../lib/form.php';
+require_once dirname(__FILE__).'/../../lib/init.php';
 
-if (!$db)
-	$db = new sql_db (DB_HOST, DB_USER, DB_PASS, DB_NAME);
+if (!$api)
+	$api = new \HaveAPI\Client(API_URL);
 ?>
 
 <label for="name">Additional info</label>
@@ -28,16 +26,10 @@ if (!$db)
 		<?php
 			$opts = array();
 
-			while(
-				$tpl = $db->findByColumn(
-					"cfg_templates",
-					"templ_supported",
-					"1",
-					"templ_order,
-					templ_label")
-			) {
-				$opts[ $tpl['templ_id'] ] = $tpl['templ_label'];
+			foreach ($api->os_template->list() as $tpl) {
+				$opts[ $tpl->id ] = $tpl->label;
 			}
+
 			$f->select('distribution', $opts);
 		?>
 	</div>
@@ -48,18 +40,15 @@ if (!$db)
 	<div class="col-xs-12 form-group">
 		<?php
 			$opts = array();
-			$sql = "SELECT location_id, location_label
-					FROM locations l
-					INNER JOIN servers s ON s.server_location = l.location_id
-					WHERE
-						environment_id = ".$db->check(ENVIRONMENT_ID)."
-						AND server_type = 'node'
-					GROUP BY location_id
-					ORDER BY location_id";
-			$rs = $db->query($sql);
-			while ($loc = $db->fetch_array($rs)) {
-				$opts[ $loc['location_id'] ] = 'Master Internet '.$loc['location_label'];
+			$locations = $api->location->list(array(
+				'environment' => ENVIRONMENT_ID,
+				'has_hypervisor' => true,
+			));
+
+			foreach ($locations as $loc) {
+				$opts[ $loc->id ] = 'Master Internet '.$loc->label;
 			}
+
 			$f->select('location', $opts);
 		?>
 	</div>

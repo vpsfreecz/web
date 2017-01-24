@@ -1,8 +1,4 @@
 <?php
-define ('DB_HOST', 'localhost');
-define ('DB_USER', '');
-define ('DB_PASS', '');
-define ('DB_NAME', '');
-define ('ENVIRONMENT_ID', 1);
+define ('API_URL', 'https://api.vpsfree.cz');
 
 error_reporting(0);

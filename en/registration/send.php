@@ -5,14 +5,11 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 	exit;
 }
 
-require_once '../../config.php';
-require_once '../../lib/db.lib.php';
-require_once '../../lib/form.php';
-require_once '../../lib/register.php';
+require_once __DIR__.'/../../lib/init.php';
 
-$db = new sql_db (DB_HOST, DB_USER, DB_PASS, DB_NAME);
+$api = new \HaveAPI\Client(API_URL);
 
-$f = new RegistrationForm('en', $db, $_POST);
+$f = new RegistrationForm('en', $_POST);
 $f->validate();
 
 if (!$f->isValid()) {
@@ -25,7 +22,7 @@ if ($f->isValidationTest()) {
 	exit;
 }
 
-$registration = new Registration('en', $db, $f->getData());
+$registration = new Registration('en', $api, $f->getData());
 
 if (!$registration->register()) {
 	$f->printErrors(array('EFAILED'));
