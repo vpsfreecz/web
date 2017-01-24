@@ -18,15 +18,17 @@ if (!$f->isValid()) {
 }
 
 if ($f->isValidationTest()) {
-	header('Location: /registration/accepted/');
+	header('Location: /registration/accepted/?0');
 	exit;
 }
 
 $registration = new Registration('en', $api, $f->getData());
 
-if (!$registration->register()) {
-	$f->printErrors(array('EFAILED'));
+try {
+	$req = $registration->register();
+	header('Location: /registration/accepted/?'.$req->id);
+
+} catch (\HaveAPI\Client\Exception\ActionFailed $e) {
+	$f->printErrors($e->getResponse());
 	exit;
 }
-
-header('Location: /registration/accepted/');

@@ -18,18 +18,17 @@ if (!$f->isValid()) {
 }
 
 if ($f->isValidationTest()) {
-	header('Location: /prihlaska/prijata/');
+	header('Location: /prihlaska/prijata/?0');
 	exit;
 }
 
 $registration = new Registration('cs', $api, $f->getData());
 
 try {
-	$registration->register();
+	$req = $registration->register();
+	header('Location: /prihlaska/prijata/?'.$req->id);
 
 } catch (\HaveAPI\Client\Exception\ActionFailed $e) {
 	$f->printErrors($e->getResponse());
 	exit;
 }
-
-header('Location: /prihlaska/prijata/');

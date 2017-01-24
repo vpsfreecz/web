@@ -13,13 +13,6 @@ class Registration {
 	}
 
 	public function register() {
-		if (!$this->save())
-			return false;
-
-		return true;
-	}
-
-	public function save() {
 		$params = array(
 			'login' => $this->data['login'],
 			'full_name' => $this->data['name'],
