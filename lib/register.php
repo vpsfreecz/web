@@ -17,7 +17,7 @@ class Registration {
 			'login' => $this->data['login'],
 			'full_name' => $this->data['name'],
 			'email' => $this->data['email'],
-			'address' => $this->data['address'],
+			'address' => $this->data['address'].', '.$this->data['zip'].' '.$this->data['city'].', '.$this->data['country'],
 			'year_of_birth' => $this->data['birth'],
 			'how' => $this->data['how'],
 			'note' => $this->data['note'],
@@ -26,7 +26,7 @@ class Registration {
 			'currency' => $this->data['currency'],
 			'language' => $this->getLanguageId($this->lang),
 		);
-		
+
 		if ($this->data['entity_type'] == 'pravnicka') {
 			$params['org_name'] = $this->data['org_name'];
 			$params['org_id'] = $this->data['ic'];
