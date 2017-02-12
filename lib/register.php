@@ -43,26 +43,4 @@ class Registration {
 
 		return 0;
 	}
-
-	private function getClientIp() {
-		if ($this->ip !== null)
-			return $this->ip;
-
-		if (array_key_exists('HTTP_X_FORWARDED_FOR', $_SERVER)) {
-			$ips = array_values(array_filter(explode(',', $_SERVER['HTTP_X_FORWARDED_FOR'])));
-
-			$this->ip = end($ips);
-
-		} else if (array_key_exists('REMOTE_ADDR', $_SERVER)) {
-			$this->ip = $_SERVER["REMOTE_ADDR"];
-
-		} else if (array_key_exists('HTTP_CLIENT_IP', $_SERVER)) {
-			$this->ip = $_SERVER["HTTP_CLIENT_IP"];
-
-		} else {
-			$this->ip = false;
-		}
-
-		return $this->ip;
-	}
 }
