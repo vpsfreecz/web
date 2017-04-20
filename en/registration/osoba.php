@@ -8,5 +8,5 @@ switch ($_POST['entity_type']) {
         header('Location: pravnicka-osoba');
         break;
     default:
-        header('Location: /prihlaska');
+        header('Location: /registration');
 }
