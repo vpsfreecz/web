@@ -1,6 +1,7 @@
-(function() {
-	
+(function(root) {
+
 	var state = {};
+	var prefix;
 
 	function saveState() {
 		$('form input, form select').each(function (i, el) {
@@ -46,7 +47,7 @@
 		saveState();
 
 		$.ajax({
-			url: name+'/form.php',
+			url: prefix+"/"+name+'/form.php',
 			success: function (data) {
 				$('#form-placeholder').html(data);
 				restoreState();
@@ -61,10 +62,14 @@
 		});
 	}
 
-	$('#continue').remove();
-	$('#entity_type').change(fetchForm);
+	root.setupRegistrationForm = function (pref) {
+		prefix = pref;
 
-	$('form').attr('action', 'send.php');
-	fetchForm();
+		$('#continue').remove();
+		$('#entity_type').change(fetchForm);
 
-}());
+		$('form').attr('action', prefix + '/send.php');
+		fetchForm();
+	};
+
+}(window));
