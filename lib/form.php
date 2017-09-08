@@ -217,7 +217,7 @@ class RegistrationForm {
 			'login' => $r->login,
 			'name' => $r->full_name,
 			'org_name' => $r->org_name,
-			'org_id' => $r->org_id,
+			'ic' => $r->org_id,
 			'email' => $r->email,
 			'address' => $address,
 			'zip' => $zip,
