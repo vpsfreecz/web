@@ -51,7 +51,7 @@ for ($i = 0;$i < $l;$i += 1) {
 	$d[$i] = "0123456789ABCDEFGHIJKLMNOPQRSTUV"[bindec(substr($b, $i * 5, 5))];
 }
 if (!empty($d)) {
-	$u = '/chart?chs=200x200&cht=qr&chld=L|0&choe=UTF-8&chl=' . $d;
+	$u = '/chart?chs=125x124&cht=qr&chld=L|0&choe=UTF-8&chl=' . $d;
 	$s = @fsockopen("chart.googleapis.com", 80, $e, $r, 1);
 	if ($s) {
 		$h = "GET " . $u . " HTTP/1.0\r\n";
