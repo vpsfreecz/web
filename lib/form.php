@@ -24,6 +24,10 @@ class RegistrationForm {
 		}
 	}
 
+	public function isPost() {
+		return $this->data != null;
+	}
+
 	public function isResubmit() {
 		return count($this->initial) > 0;
 	}

@@ -25,6 +25,9 @@
 			} else {
 				$(el).val(state[key]);
 			}
+
+			if (key != 'entity_type')
+				$(el).change();
 		}
 	}
 
