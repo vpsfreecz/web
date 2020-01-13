@@ -61,7 +61,21 @@ foreach ($locList as $loc) {
 <label>Virtualization platform</label>
 <div class="row">
 	<noscript>Please enable JavaScript</noscript>
-	<p id="platform-choose" class="hidden">Choose VPS location</p>
+	<div id="platform-choose" class="col-xs-12 hidden">
+		<p>
+			We're using two virtualization platforms. In Prague (Praha), we've started
+			to deploy <strong>vpsAdminOS</strong>, which is an in-house developed
+			solution for container virtualization. For more information, see our
+			<a href="https://kb.vpsfree.org/manuals/vps/vpsadminos" target="_blank">knowledge base</a>
+			or project documentation at
+			<a href="https://vpsadminos.org" target="_blank">vpsadminos.org</a>.
+		</p>
+		<p>
+			In Brno, only <strong>OpenVZ Legacy</strong> is supported for now. It's
+			a container-based virtualization as well, but dated and with older Linux
+			kernel. We're in the process of migrating to the newer <strong>vpsAdminOS</strong>.
+		</p>
+	</div>
 	<p id="platform-vpsadminos" class="hidden">
 		<strong>vpsAdminOS</strong> is an in-house developed container-based
 		virtualization platform that powers our VPS. For more information, see our
