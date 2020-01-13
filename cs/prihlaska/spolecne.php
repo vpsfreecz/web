@@ -8,7 +8,7 @@ $templates = array();
 $locations = array();
 
 foreach ($api->os_template->list() as $tpl) {
-	$templates[ $tpl->id ] = array(
+	$templates[] = array(
 		'id' => $tpl->id,
 		'label' => $tpl->label,
 		'hypervisor_type' => $tpl->hypervisor_type,
@@ -21,7 +21,8 @@ $locList = $api->location->list(array(
 ));
 
 foreach ($locList as $loc) {
-	$locations[$loc->id] = array(
+	$locations[] = array(
+		'id' => $loc->id,
 		'label' => $loc->label,
 	);
 }
@@ -97,8 +98,8 @@ foreach ($locList as $loc) {
 		<?php
 			$opts = array();
 
-			foreach ($templates as $id => $tpl) {
-				$opts[ $id ] = '['.$tpl['hypervisor_type'].'] '.$tpl['label'];
+			foreach ($templates as $tpl) {
+				$opts[ $tpl['id'] ] = '['.$tpl['hypervisor_type'].'] '.$tpl['label'];
 			}
 
 			$f->select('distribution', $opts);
@@ -133,13 +134,18 @@ if ($f->isResubmit()) {
 <script type="text/javascript">
 var locations = <?php echo json_encode($locations); ?>;
 var templates = <?php echo json_encode($templates); ?>;
+var locationIndex = {};
+
+locations.forEach(function(loc) {
+	locationIndex[loc.id] = loc;
+});
 
 $('#platform-choose').removeClass('hidden');
 $('#distribution option:not([disabled])').remove();
 
 function changeLocation() {
 	var locId = $('#location').val().toString();
-	var loc = locations[locId];
+	var loc = locationIndex[locId];
 	var platform;
 
 	$('#platform-choose').addClass('hidden');
@@ -157,14 +163,10 @@ function changeLocation() {
 	$('#distribution option:not([disabled])').remove();
 	$('#distribution option[disabled]').prop('selected', true);
 
-	for (const k of Object.keys(templates)) {
-		var tpl = templates[k];
-
-		if (tpl.hypervisor_type != platform)
-			continue;
-
-		$('#distribution').append($('<option>', {value: tpl.id, text: tpl.label}));
-	}
+	templates.forEach(function(tpl) {
+		if (tpl.hypervisor_type == platform)
+			$('#distribution').append($('<option>', {value: tpl.id, text: tpl.label}));
+	});
 }
 
 $('#location').change(changeLocation);
