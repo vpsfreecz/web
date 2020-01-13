@@ -61,7 +61,21 @@ foreach ($locList as $loc) {
 <label>Virtualizační platforma</label>
 <div class="row">
 	<noscript>Prosím zapni si JavaScript</noscript>
-	<p id="platform-choose" class="hidden">Vyber umístění VPS</p>
+	<div id="platform-choose" class="col-xs-12 hidden">
+		<p>
+			V současné době používáme dvě virtualizační technologie. V Praze postupně
+			rozšiřujeme nasazení <strong>vpsAdminOS</strong>, což je námi vyvinutý systém
+			pro kontejnerovou virtualizaci. Více informací viz
+			<a href="https://kb.vpsfree.cz/navody/vps/vpsadminos" target="_blank">znalostní báze</a>
+			nebo dokumentace projektu na
+			<a href="https://vpsadminos.org" target="_blank">vpsadminos.org</a>.
+		</p>
+		<p>
+			V Brně je k prozatím dispozici jen <strong>OpenVZ Legacy</strong>. Jedná
+			se také o kontejnerovou virtualizaci, ale používá se zde starší Linux
+			kernel a postupně od ní upouštíme ve prospěch <strong>vpsAdminOS</strong>.
+		</p>
+	</div>
 	<p id="platform-vpsadminos" class="hidden">
 		<strong>vpsAdminOS</strong> je naším spolkem vyvinutý systém pro provoz
 		linuxových kontejnerů, které pohání naše VPS. Více informací viz
