@@ -112,8 +112,8 @@ foreach ($locList as $loc) {
 	<div class="col-xs-12 form-group">
 		<?php
 			$f->select('currency', array(
-				'czk' => '900 Kč na tři měsíce',
-				'eur' => '36 € na tři měsíce',
+				'czk' => '300 Kč na měsíc',
+				'eur' => '12 € na měsíc',
 			));
 		?>
 	</div>
