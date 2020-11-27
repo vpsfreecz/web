@@ -119,7 +119,7 @@ foreach ($locList as $loc) {
 		?>
 	</div>
 <p>
-	If you need an invoice, please send billing information to our <a href="/contact/">support team</a>. The data is processed according to <a href="">organization rules</a>.
+	If you need an invoice, please send billing information to our <a href="/contact/">support team</a>. The data is processed according to <a href="https://github.com/vpsfreecz/oficialni-dokumenty/blob/master/organizacni_rad.md" target="_blank">organization rules</a>.
 </p>
 </div>
 
