@@ -117,7 +117,11 @@ foreach ($locList as $loc) {
 			));
 		?>
 	</div>
-<p>Chceš-li fakturu, pošli po schválení přihlášky na <a href="/kontakt/">podporu</a> fakturační údaje.</p>
+<p>
+	Chceš-li fakturu, pošli po schválení přihlášky na <a href="/kontakt/">podporu</a>
+	fakturační údaje. Zpracování údajů podléhá pravidlům nakládání s daty podle
+	<a href="https://github.com/vpsfreecz/oficialni-dokumenty/blob/master/organizacni_rad.md">organizačního řádu</a>.
+</p>
 </div>
 
 <?php

@@ -118,7 +118,9 @@ foreach ($locList as $loc) {
 			));
 		?>
 	</div>
-<p>If you need an invoice, please send billing information to our <a href="/contact/">support team</a>.</p>
+<p>
+	If you need an invoice, please send billing information to our <a href="/contact/">support team</a>. The data is processed according to <a href="">organization rules</a>.
+</p>
 </div>
 
 <?php
