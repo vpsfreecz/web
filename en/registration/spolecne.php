@@ -7,7 +7,7 @@ if (!$api)
 $templates = array();
 
 foreach ($api->os_template->list() as $tpl) {
-	if ($tpl->hypervisor_type != 'vpsadmin')
+	if ($tpl->hypervisor_type != 'vpsadminos')
 		continue;
 
 	$templates[] = $tpl;
