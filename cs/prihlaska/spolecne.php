@@ -52,7 +52,7 @@ $locations = $api->location->list(array(
 
 <label>Virtualizační platforma</label>
 <div class="row">
-	<p id="platform-vpsadminos" class="hidden">
+	<p id="platform-vpsadminos">
 		<strong>vpsAdminOS</strong> je naším spolkem vyvinutý systém pro provoz
 		linuxových kontejnerů, které pohání naše VPS. Více informací viz
 		<a href="https://kb.vpsfree.cz/navody/vps/vpsadminos" target="_blank">znalostní báze</a>

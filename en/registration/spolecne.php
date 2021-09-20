@@ -52,7 +52,7 @@ $locations = $api->location->list(array(
 
 <label>Virtualization platform</label>
 <div class="row">
-	<p id="platform-vpsadminos" class="hidden">
+	<p id="platform-vpsadminos">
 		<strong>vpsAdminOS</strong> is an in-house developed container-based
 		virtualization platform that powers our VPS. For more information, see our
 		<a href="https://kb.vpsfree.org/manuals/vps/vpsadminos" target="_blank">knowledge base</a>
