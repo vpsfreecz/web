@@ -19,7 +19,7 @@ if($_GET['country'] == "cz")
 }
 else if($_GET['country'] == "sk") 
 {
-	//echo "At si madari naserou!"; 
+	
 
 	$outputate = date("Ymd");
 	$iban = 'SK2083300000002601502873';//$_GET['iban'];
