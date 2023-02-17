@@ -1,5 +1,7 @@
 {
     "require": {
-        "haveapi/client": "0.13.*"
+        "haveapi/client": "0.13.*",
+        "rikudou/skqrpayment": "^4.2",
+        "endroid/qr-code": "^2.3"
     }
 }
