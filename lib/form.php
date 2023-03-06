@@ -50,7 +50,7 @@ class RegistrationForm {
 	}
 
 	public function printErrors($response = null) {
-		virtual('./hlavicka.html');
+		echo '<!--#include virtual="hlavicka.html" -->';
 		echo '<form action="./send.php" method="post">';
 
 		if ($response) {
@@ -78,7 +78,7 @@ class RegistrationForm {
 		include $this->getEntityType().'-osoba/form.php';
 
 		echo '</form>';
-		virtual('./paticka.html');
+		echo '<!--#include virtual="paticka.html" -->';
 	}
 
 	public function getLabel($field) {

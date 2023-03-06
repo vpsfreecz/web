@@ -52,7 +52,3 @@ Copy `config.php.dist` to `config.php` and fill in the URL to the vpsAdmin API.
 	</Directory>
 </VirtualHost>
 ```
-
-## Known issues
-In order for [virtual()](https://php.net/virtual) to work, compression must be
-disabled, otherwise it results in *Content Encoding Error*.
