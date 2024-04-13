@@ -1,6 +1,5 @@
 config.php
 download/*
-*/analytics.html
 Gemfile.lock
 composer.lock
 vendor
