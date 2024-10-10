@@ -77,7 +77,17 @@ a.support {
 }
 
 .parametry {
-	height:20em;
+	height:18.5em;
+}
+
+.parametry ul {
+	margin: 0;
+	padding: 0;
+}
+
+.parametry li {
+	list-style: none;
+	margin-bottom: 20px;
 }
 
 .zacit {
