@@ -1,10 +1,20 @@
 <?php
 require_once dirname(__FILE__).'/../../lib/init.php';
 
+// Capture the start time for the API client instantiation
+$startClientTime = microtime(true);
+
 if (!$api)
 	$api = new \HaveAPI\Client(API_URL);
 
+// Log the time taken to instantiate the API client
+$clientTime = microtime(true) - $startClientTime;
+error_log("API client instantiation took {$clientTime} seconds.");
+
 $templates = array();
+
+// Capture the start time for the first API call
+$startTemplatesTime = microtime(true);
 
 foreach ($api->os_template->list() as $tpl) {
 	if ($tpl->hypervisor_type != 'vpsadminos')
@@ -13,10 +23,21 @@ foreach ($api->os_template->list() as $tpl) {
 	$templates[] = $tpl;
 }
 
+// Log the time taken for the first API call
+$templatesTime = microtime(true) - $startTemplatesTime;
+error_log("Fetching templates took {$templatesTime} seconds.");
+
+// Capture the start time for the second API call
+$startLocationsTime = microtime(true);
+
 $locations = $api->location->list(array(
 	'environment' => ENVIRONMENT_ID,
 	'has_hypervisor' => true,
 ));
+
+// Log the time taken for the second API call
+$locationsTime = microtime(true) - $startLocationsTime;
+error_log("Fetching locations took {$locationsTime} seconds.");
 ?>
 
 <label for="name">Doplňující údaje</label>
@@ -24,14 +45,12 @@ $locations = $api->location->list(array(
 	<div class="col-xs-12 form-group">
 		<?php $f->input('how') ?>
 	</div>
-
 </div>
 
 <div class="row">
 	<div class="col-xs-12 form-group">
 		<?php $f->input('note'); ?>
 	</div>
-
 </div>
 
 <label for="location">Umístění VPS</label>
@@ -47,7 +66,6 @@ $locations = $api->location->list(array(
 			$f->select('location', $opts);
 		?>
 	</div>
-
 </div>
 
 <label>Virtualizační platforma</label>
@@ -74,7 +92,6 @@ $locations = $api->location->list(array(
 			$f->select('distribution', $opts);
 		?>
 	</div>
-
 </div>
 
 <div class="row">
