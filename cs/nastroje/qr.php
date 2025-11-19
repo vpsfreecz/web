@@ -30,6 +30,7 @@ else if($_GET['country'] == "sk")
                         ->setComment('QR platba SK')
                         ->setCurrency('EUR')
                         ->setVariableSymbol($vs)
+                        ->setPayeeName('vpsFree.cz')
                         ->setXzBinary('/run/current-system/sw/bin/xz');
 
         $qrCode = $payment->getQrCode();
