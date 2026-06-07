@@ -34,6 +34,13 @@ $locations = $api->location->list(array(
 
 </div>
 
+<label for="time_zone">Time zone</label>
+<div class="row">
+	<div class="col-xs-12 form-group">
+		<?php $f->select('time_zone', $f->timeZoneOptions()); ?>
+	</div>
+</div>
+
 <label for="location">VPS location</label>
 <div class="row">
 	<div class="col-xs-12 form-group">

@@ -25,6 +25,7 @@ class Registration {
 			'location' => $this->data['location'],
 			'currency' => $this->data['currency'],
 			'language' => $this->getLanguageId($this->lang),
+			'time_zone' => ($this->data['time_zone'] ?? null) ?: null,
 		);
 
 		if ($this->data['entity_type'] == 'pravnicka') {

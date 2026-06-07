@@ -31,6 +31,33 @@
 		}
 	}
 
+	function defaultTimeZone() {
+		if (!window.Intl || !Intl.DateTimeFormat)
+			return null;
+
+		try {
+			return Intl.DateTimeFormat().resolvedOptions().timeZone;
+		} catch (e) {
+			return null;
+		}
+	}
+
+	function selectDefaultTimeZone() {
+		var timeZone = defaultTimeZone();
+		var select = $('form select[name="time_zone"]');
+		var selected = select.find('option:selected');
+
+		if (!timeZone || !select.length)
+			return;
+
+		if (selected.length && !selected.prop('disabled'))
+			return;
+
+		select.find('option').filter(function () {
+			return this.value === timeZone;
+		}).prop('selected', true);
+	}
+
 	function fetchForm() {
 		var name;
 
@@ -54,6 +81,7 @@
 			success: function (data) {
 				$('#form-placeholder').html(data);
 				restoreState();
+				selectDefaultTimeZone();
 			},
 			error: function (xhr, textStatus) {
 				$('#form-placeholder').html(

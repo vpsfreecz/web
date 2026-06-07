@@ -95,6 +95,15 @@ class RegistrationForm {
 		return $this->entityType;
 	}
 
+	public function timeZoneOptions() {
+		$ret = array();
+
+		foreach (DateTimeZone::listIdentifiers() as $timeZone)
+			$ret[$timeZone] = $timeZone;
+
+		return $ret;
+	}
+
 	public function isValidationTest() {
 		return array_key_exists('_mock', $this->data) && $this->data['_mock'];
 	}
@@ -177,6 +186,7 @@ class RegistrationForm {
 			'distribution',
 			'location',
 			'currency',
+			'time_zone',
 		);
 
 		if ($this->data['entity_type'] === 'pravnicka') {
@@ -233,6 +243,7 @@ class RegistrationForm {
 			'distribution' => $r->os_template_id,
 			'location' => $r->location_id,
 			'currency' => $r->currency,
+			'time_zone' => $r->time_zone ?? null,
 		);
 	}
 
@@ -267,7 +278,7 @@ class Validators {
 			if (!method_exists($this, $f))
 				continue;
 
-			$ret = call_user_func(array($this, $f), $data[$f]);
+			$ret = call_user_func(array($this, $f), $data[$f] ?? null);
 
 			if ($ret === true || (is_array($ret) && count($ret) == 0))
 				continue;
@@ -438,5 +449,12 @@ class Validators {
 			return 'NOTSELECTED';
 
 		return true;
+	}
+
+	function time_zone($v) {
+		if (!$v)
+			return true;
+
+		return in_array($v, DateTimeZone::listIdentifiers(), true) ? true : 'NOTSELECTED';
 	}
 }
