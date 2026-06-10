@@ -59,7 +59,6 @@ class RegistrationForm {
 			echo '</div>';
 
 			foreach ($response->getErrors() as $param => $errors) {
-				$tr = $this->trError($error);
 				echo '<div class="alert alert-danger" role="alert">';
 				echo $this->getLabel($param).': '.implode(', ', $errors);
 				echo '</div>';
@@ -266,11 +265,14 @@ class RegistrationForm {
 class Validators {
 	public $errors = array();
 	public $fields;
+	private $lang;
 	private $db;
+	private $mxResolver;
 
-	public function __construct($lang, $fields) {
+	public function __construct($lang, $fields, $mxResolver = null) {
 		$this->lang = $lang;
 		$this->fields = $fields;
+		$this->mxResolver = $mxResolver;
 	}
 
 	public function validate($data) {
@@ -328,7 +330,7 @@ class Validators {
 
 		// Test whether this mail uses MS mail servers
 		$domain = substr($v, strpos($v, '@') + 1);
-		$mail_servers = dns_get_record($domain, DNS_MX);
+		$mail_servers = $this->resolveMx($domain);
 
 		if ($mail_servers === false) {
 			// No MX record means MS server is not used
@@ -343,12 +345,22 @@ class Validators {
 		return true;
 	}
 
+	protected function resolveMx($domain) {
+		if ($this->mxResolver)
+			return call_user_func($this->mxResolver, $domain);
+
+		return dns_get_record($domain, DNS_MX);
+	}
+
 	public function birth($v) {
 		$ret = array();
 		$y = date('Y');
 
 		if (preg_match('/\D/', $v))
 			$ret[] = 'NUMONLY';
+
+		if (count($ret) > 0)
+			return $ret;
 
 		if ($v < ($y - 100) || ($y - $v) <= 5)
 			$ret[] = 'NOTBIRTH';

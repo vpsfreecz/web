@@ -97,9 +97,14 @@
 		prefix = pref;
 
 		$('#continue').remove();
-		$('#entity_type').change(fetchForm);
-
 		$('form').attr('action', prefix + '/send.php');
+
+		if (!$('#form-placeholder').length) {
+			selectDefaultTimeZone();
+			return;
+		}
+
+		$('#entity_type').change(fetchForm);
 		fetchForm();
 	};
 
