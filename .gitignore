@@ -2,3 +2,5 @@ config.php
 download/*
 Gemfile.lock
 vendor
+result
+result-*

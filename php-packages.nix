@@ -1,4 +1,12 @@
-{composerEnv, fetchurl, fetchgit ? null, fetchhg ? null, fetchsvn ? null, noDev ? false}:
+{
+  composerEnv,
+  fetchurl,
+  fetchgit ? null,
+  fetchhg ? null,
+  fetchsvn ? null,
+  noDev ? false,
+  src ? ./.,
+}:
 
 let
   packages = {
@@ -93,13 +101,13 @@ let
       };
     };
   };
-  devPackages = {};
+  devPackages = { };
 in
 composerEnv.buildPackage {
   inherit packages devPackages noDev;
   name = "vpsfree-web";
-  src = ./.;
+  inherit src;
   executable = false;
   symlinkDependencies = false;
-  meta = {};
+  meta = { };
 }
