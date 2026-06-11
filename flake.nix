@@ -38,7 +38,6 @@
         };
 
       suiteArgsFor = system: {
-        vpsadminosPath = vpsadminos.outPath;
         vpsadminPath = vpsadmin.outPath;
         webPackage = self.packages.${system}.vpsfree-web;
       };
