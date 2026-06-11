@@ -19,6 +19,8 @@ $locations = $api->location->list(array(
 ));
 ?>
 
+<?php $f->printAntispamFields('Web'); ?>
+
 <label for="name">Doplňující údaje</label>
 <div class="row">
 	<div class="col-xs-12 form-group">
@@ -34,12 +36,7 @@ $locations = $api->location->list(array(
 
 </div>
 
-<label for="time_zone">Časové pásmo</label>
-<div class="row">
-	<div class="col-xs-12 form-group">
-		<?php $f->select('time_zone', $f->timeZoneOptions()); ?>
-	</div>
-</div>
+<input type="hidden" name="time_zone" value="">
 
 <label for="location">Umístění VPS</label>
 <div class="row">

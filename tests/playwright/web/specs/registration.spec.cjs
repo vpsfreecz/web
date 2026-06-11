@@ -21,9 +21,6 @@ for (const locale of Object.keys(registration)) {
     test(`${locale} dynamic ${entity} form loads`, async ({ page }) => {
       await openRegistrationForm(page, locale, entity, 'dynamic');
       await expectRegistrationFormShape(page, locale, entity, 'dynamic');
-
-      const timeZone = page.locator('select[name="time_zone"]');
-      await expect(timeZone).not.toHaveValue('');
     });
 
     test(`${locale} static ${entity} form loads`, async ({ page }) => {
@@ -62,6 +59,7 @@ for (const item of submissionCases) {
       address: data.address,
       city: data.city,
       country: data.country,
+      region: data.region,
       orgName: data.orgName,
       orgId: data.orgId,
       timeZone: data.timeZone,

@@ -4,3 +4,5 @@ Gemfile.lock
 vendor
 result
 result-*
+test-artifacts/
+test-results/

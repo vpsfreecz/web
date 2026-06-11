@@ -42,20 +42,13 @@
 		}
 	}
 
-	function selectDefaultTimeZone() {
+	function fillDefaultTimeZone() {
 		var timeZone = defaultTimeZone();
-		var select = $('form select[name="time_zone"]');
-		var selected = select.find('option:selected');
 
-		if (!timeZone || !select.length)
+		if (!timeZone)
 			return;
 
-		if (selected.length && !selected.prop('disabled'))
-			return;
-
-		select.find('option').filter(function () {
-			return this.value === timeZone;
-		}).prop('selected', true);
+		$('form input[name="time_zone"]').val(timeZone);
 	}
 
 	function fetchForm() {
@@ -81,7 +74,7 @@
 			success: function (data) {
 				$('#form-placeholder').html(data);
 				restoreState();
-				selectDefaultTimeZone();
+				fillDefaultTimeZone();
 			},
 			error: function (xhr, textStatus) {
 				$('#form-placeholder').html(
@@ -100,7 +93,7 @@
 		$('form').attr('action', prefix + '/send.php');
 
 		if (!$('#form-placeholder').length) {
-			selectDefaultTimeZone();
+			fillDefaultTimeZone();
 			return;
 		}
 

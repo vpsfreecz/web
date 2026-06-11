@@ -65,14 +65,15 @@ function makeRegistrationData(locale, entity) {
     email: `${login}@example.test`,
     birth: '1990',
     address: locale === 'cs' ? `Testovaci ${100 + uniqueCounter}` : 'Example Street',
-    city: locale === 'cs' ? 'Praha' : 'Prague',
+    city: locale === 'cs' ? 'Praha' : 'London',
     zip: locale === 'cs' ? '120 00' : 'AB12 3CD',
-    country: locale === 'cs' ? 'Cesko' : 'Czech Republic',
+    country: locale === 'cs' ? 'Česko' : 'United Kingdom',
+    region: '',
     how: `web integration test ${suffix}`,
     note: `registration test ${suffix}`,
     orgName: company ? `Example Org ${suffix}` : null,
     orgId: company ? `${100000 + uniqueCounter}` : null,
-    timeZone: 'Europe/Prague',
+    timeZone: '',
     currency: locale === 'cs' ? 'czk' : 'eur',
   };
 }
@@ -96,7 +97,21 @@ async function expectRegistrationFormShape(page, locale, entity, mode) {
   await expect(page.locator('form')).toHaveAttribute('action', config.actionPath);
   await expect(page.locator('input[name="login"]')).toBeVisible();
   await expect(page.locator('input[name="email"]')).toBeVisible();
-  await expect(page.locator('select[name="time_zone"]')).toBeVisible();
+  await expect(page.locator('select[name="country"]')).toBeVisible();
+  await expect(page.locator('input[name="region"]')).toBeVisible();
+  await expect(page.locator('select[name="country"] option').nth(1)).toHaveText(
+    locale === 'cs' ? 'Česko' : 'Czechia',
+  );
+  await expect(page.locator('select[name="country"] option').nth(2)).toHaveText(
+    locale === 'cs' ? 'Slovensko' : 'Slovakia',
+  );
+  const honeypot = page.locator('input[name="website"]');
+  await expect(honeypot).toHaveAttribute('tabindex', '-1');
+  await expect(honeypot).toHaveAttribute('autocomplete', 'off');
+  await expect(honeypot).toHaveValue('');
+  await expect(page.locator('input[name="form_started_at"]')).toHaveValue(/\d+/);
+  await expect(page.locator('input[name="form_token"]')).toHaveValue(/[a-f0-9]{64}/);
+  await expect(page.locator('input[type="hidden"][name="time_zone"]')).toHaveCount(1);
   await expect(page.locator('#send')).toHaveValue(config.submitText);
 
   if (mode === 'static') {
@@ -168,10 +183,11 @@ async function fillRegistrationForm(page, data) {
   await page.locator('input[name="address"]').fill(data.address);
   await page.locator('input[name="city"]').fill(data.city);
   await page.locator('input[name="zip"]').fill(data.zip);
-  await page.locator('input[name="country"]').fill(data.country);
+  await page.locator('select[name="country"]').selectOption(data.country);
+  await page.locator('input[name="region"]').fill(data.region || '');
   await page.locator('input[name="how"]').fill(data.how);
   await page.locator('input[name="note"]').fill(data.note);
-  await page.locator('select[name="time_zone"]').selectOption(data.timeZone);
+  data.timeZone = await page.locator('input[name="time_zone"]').inputValue();
   await page.locator('select[name="currency"]').selectOption(data.currency);
 
   if (data.entity === 'pravnicka') {
@@ -185,6 +201,7 @@ async function fillRegistrationForm(page, data) {
 
 async function submitRegistration(page, locale) {
   const beforeSubmit = await formDataSnapshot(page);
+  await waitForAntispamDelay(page);
   const requestPromise = page.waitForRequest(
     (request) => request.method() === 'POST' && request.url().endsWith('/send.php'),
   );
@@ -224,6 +241,15 @@ async function submitValidationForm(page) {
   ]);
 }
 
+async function waitForAntispamDelay(page) {
+  const startedAt = Number(await page.locator('input[name="form_started_at"]').inputValue());
+  const age = Math.floor(Date.now() / 1000) - startedAt;
+
+  if (Number.isFinite(age) && age < 5) {
+    await page.waitForTimeout((5 - age) * 1000 + 250);
+  }
+}
+
 module.exports = {
   registration,
   registrationUrl,
@@ -235,4 +261,5 @@ module.exports = {
   fillRegistrationForm,
   submitRegistration,
   submitValidationForm,
+  waitForAntispamDelay,
 };
