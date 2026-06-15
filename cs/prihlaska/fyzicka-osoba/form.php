@@ -43,16 +43,12 @@ if (!$f)
 </div>
 
 <div class="row">
-	<div class="col-xs-12 col-sm-4 form-group">
+	<div class="col-xs-12 col-sm-6 form-group">
 		<?php $f->input('zip'); ?>
 	</div>
 
-	<div class="col-xs-12 col-sm-4 form-group">
+	<div class="col-xs-12 col-sm-6 form-group">
 		<?php $f->countrySelect(); ?>
-	</div>
-
-	<div class="col-xs-12 col-sm-4">
-		<?php $f->input('region'); ?>
 	</div>
 </div>
 

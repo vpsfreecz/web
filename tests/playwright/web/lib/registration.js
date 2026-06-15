@@ -98,7 +98,13 @@ async function expectRegistrationFormShape(page, locale, entity, mode) {
   await expect(page.locator('input[name="login"]')).toBeVisible();
   await expect(page.locator('input[name="email"]')).toBeVisible();
   await expect(page.locator('select[name="country"]')).toBeVisible();
-  await expect(page.locator('input[name="region"]')).toBeVisible();
+
+  if (locale === 'en') {
+    await expect(page.locator('input[name="region"]')).toBeVisible();
+  } else {
+    await expect(page.locator('input[name="region"]')).toHaveCount(0);
+  }
+
   await expect(page.locator('select[name="country"] option').nth(1)).toHaveText(
     locale === 'cs' ? 'Česko' : 'Czechia',
   );
@@ -184,7 +190,11 @@ async function fillRegistrationForm(page, data) {
   await page.locator('input[name="city"]').fill(data.city);
   await page.locator('input[name="zip"]').fill(data.zip);
   await page.locator('select[name="country"]').selectOption(data.country);
-  await page.locator('input[name="region"]').fill(data.region || '');
+
+  if (await page.locator('input[name="region"]').count()) {
+    await page.locator('input[name="region"]').fill(data.region || '');
+  }
+
   await page.locator('input[name="how"]').fill(data.how);
   await page.locator('input[name="note"]').fill(data.note);
   data.timeZone = await page.locator('input[name="time_zone"]').inputValue();
