@@ -709,10 +709,7 @@ class RegistrationForm {
 	}
 
 	protected function isTrustedProxy($ip) {
-		$trusted = $this->stringConfig('REGISTRATION_TRUSTED_PROXIES');
-
-		if (!$trusted)
-			return false;
+		$trusted = $this->trustedProxies();
 
 		foreach (preg_split('/[\s,]+/', $trusted, -1, PREG_SPLIT_NO_EMPTY) as $proxy) {
 			if ($proxy === $ip || $this->ipMatchesCidr($ip, $proxy))
@@ -720,6 +717,15 @@ class RegistrationForm {
 		}
 
 		return false;
+	}
+
+	protected function trustedProxies() {
+		$configured = $this->stringConfig('REGISTRATION_TRUSTED_PROXIES');
+
+		if ($configured)
+			return $configured;
+
+		return '127.0.0.1 ::1 172.16.0.0/12';
 	}
 
 	protected function ipMatchesCidr($ip, $cidr) {

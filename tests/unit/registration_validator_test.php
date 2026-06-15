@@ -30,6 +30,48 @@ function expect_valid($label, $lang, $field, $value, $mxResolver = null, $data =
 	expect_errors($label, $lang, $field, $value, array(), $mxResolver, $data);
 }
 
+function expect_equal($label, $expected, $actual) {
+	if ($actual !== $expected)
+		fail_test($label.': expected '.json_encode($expected).', got '.json_encode($actual));
+}
+
+class TestRegistrationForm extends RegistrationForm {
+	public function exposedRemoteIp() {
+		return $this->remoteIp();
+	}
+
+	public function exposedRateLimitKey($ip) {
+		return $this->rateLimitKey($ip);
+	}
+}
+
+function remote_ip_with_server($server) {
+	$previousServer = $_SERVER;
+
+	$_SERVER = array_merge(
+		array(
+			'REQUEST_URI' => '/',
+		),
+		$server
+	);
+
+	$form = new TestRegistrationForm('en', array());
+	$ip = $form->exposedRemoteIp();
+	$_SERVER = $previousServer;
+
+	return $ip;
+}
+
+function rate_limit_key_for_ip($ip) {
+	$previousServer = $_SERVER;
+	$_SERVER = array('REQUEST_URI' => '/');
+	$form = new TestRegistrationForm('en', array());
+	$key = $form->exposedRateLimitKey($ip);
+	$_SERVER = $previousServer;
+
+	return $key;
+}
+
 $year = intval(date('Y'));
 $noMx = function ($domain) {
 	return false;
@@ -102,6 +144,19 @@ foreach (array('distribution', 'location', 'currency') as $field) {
 expect_valid('time zone accepts empty value', 'en', 'time_zone', '');
 expect_valid('time zone accepts valid identifier', 'en', 'time_zone', 'Europe/Prague');
 expect_errors('time zone rejects invalid identifier', 'en', 'time_zone', 'Invalid/Zone', array('NOTSELECTED'));
+
+$ip = remote_ip_with_server(array(
+	'REMOTE_ADDR' => '172.16.9.140',
+	'HTTP_X_FORWARDED_FOR' => '109.81.121.44, 172.16.9.140',
+));
+expect_equal('remote ip trusts default internal proxy', '109.81.121.44', $ip);
+expect_equal('rate limit uses forwarded client ipv4', '109.81.121.44', rate_limit_key_for_ip($ip));
+
+$ip = remote_ip_with_server(array(
+	'REMOTE_ADDR' => '198.51.100.10',
+	'HTTP_X_FORWARDED_FOR' => '109.81.121.44',
+));
+expect_equal('remote ip ignores forwarded value from untrusted peer', '198.51.100.10', $ip);
 
 if ($failures > 0)
 	exit(1);
