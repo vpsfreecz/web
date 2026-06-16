@@ -98,6 +98,12 @@ async function expectRegistrationFormShape(page, locale, entity, mode) {
   await expect(page.locator('input[name="login"]')).toBeVisible();
   await expect(page.locator('input[name="email"]')).toBeVisible();
   await expect(page.locator('select[name="country"]')).toBeVisible();
+  await expectSelectedOptionEnabled(page.locator('select[name="location"]'));
+  await expectSelectedOptionEnabled(page.locator('select[name="distribution"]'));
+  await expectSelectedOptionEnabled(page.locator('select[name="currency"]'));
+  await expect(page.locator('select[name="currency"]')).toHaveValue(
+    locale === 'cs' ? 'czk' : 'eur',
+  );
 
   if (locale === 'en') {
     await expect(page.locator('input[name="region"]')).toBeVisible();
@@ -167,6 +173,17 @@ async function selectFirstRealOption(locator) {
   expect(value).toBeTruthy();
   await locator.selectOption(value);
   return value;
+}
+
+async function expectSelectedOptionEnabled(locator) {
+  await expect(locator).toBeVisible();
+  await expect(
+    locator.evaluate((select) => {
+      const selected = select.selectedOptions[0];
+
+      return selected && selected.value && !selected.disabled;
+    }),
+  ).resolves.toBeTruthy();
 }
 
 async function formDataSnapshot(page) {

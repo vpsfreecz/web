@@ -30,16 +30,6 @@ test('Czech company form shows required-field validation messages', async ({ pag
   await expectFieldError(page, 'email', 'E-mail: není platná e-mailová adresa');
   await expectFieldError(page, 'address', 'chybí číslo popisné');
   await expectFieldError(page, 'zip', 'PSČ: musí být vyplněno');
-  await expectFieldError(
-    page,
-    'distribution',
-    'Vyber si distribuci: vyber některou z nabízených voleb',
-  );
-  await expectFieldError(
-    page,
-    'location',
-    'Preferovaná lokace pro VPS: vyber některou z nabízených voleb',
-  );
   await expectFieldError(page, 'org_name', 'Název organizace: musí mít minimálně 3 znaky');
   await expectFieldError(page, 'ic', 'IČ: musí mít minimálně 6 znaků');
 });
@@ -52,8 +42,6 @@ test('English person form shows required-field validation messages', async ({ pa
   await expectFieldError(page, 'name', 'Name: must contain at least 5 characters');
   await expectFieldError(page, 'email', 'E-mail: it is not valid mail address');
   await expectFieldError(page, 'zip', 'ZIP/Postal code: must be filled');
-  await expectFieldError(page, 'distribution', 'Choose your distro: choose one option');
-  await expectFieldError(page, 'currency', 'Currency for member fees: choose one option');
 });
 
 test('Czech person form rejects representative invalid values', async ({ page }) => {

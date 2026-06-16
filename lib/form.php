@@ -140,12 +140,15 @@ class RegistrationForm {
 		echo $ret;
 	}
 
-	public function select($name, $values) {
-		if ($_POST[$name] && array_key_exists($_POST[$name], $values))
-			$selected = $_POST[$name];
+	public function select($name, $values, $default = null) {
+		if (array_key_exists($name, $_POST))
+			$selected = $_POST[$name] && array_key_exists($_POST[$name], $values) ? $_POST[$name] : null;
 
 		elseif (array_key_exists($name, $this->initial))
 			$selected = $this->initial[$name];
+
+		elseif ($default !== null && array_key_exists($default, $values))
+			$selected = $default;
 
 		else
 			$selected = null;
@@ -1320,9 +1323,6 @@ class Validators {
 	function how($v) {
 		if (!$v)
 			return true;
-
-		if (strlen($v) < 4)
-			return 'LEN_4';
 
 		if ($this->looksRandom($v))
 			return 'RANDOMTEXT';

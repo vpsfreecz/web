@@ -43,12 +43,16 @@ $locations = $api->location->list(array(
 	<div class="col-xs-12 form-group">
 			<?php
 			$opts = array();
+			$defaultLocation = null;
 
 			foreach ($locations as $loc) {
 				$opts[ $loc->id ] = 'Master Internet '.$loc->label;
+
+				if ($defaultLocation === null)
+					$defaultLocation = $loc->id;
 			}
 
-			$f->select('location', $opts);
+			$f->select('location', $opts, $defaultLocation);
 		?>
 	</div>
 
@@ -70,12 +74,16 @@ $locations = $api->location->list(array(
 	<div class="col-xs-12 form-group">
 		<?php
 			$opts = array();
+			$defaultDistribution = null;
 
 			foreach ($templates as $tpl) {
 				$opts[ $tpl->id ] = $tpl->label;
+
+				if ($defaultDistribution === null || preg_match('/^Debian\b/i', $tpl->label))
+					$defaultDistribution = $tpl->id;
 			}
 
-			$f->select('distribution', $opts);
+			$f->select('distribution', $opts, $defaultDistribution);
 		?>
 	</div>
 
@@ -87,7 +95,7 @@ $locations = $api->location->list(array(
 			$f->select('currency', array(
 				'czk' => '300 Kč na měsíc',
 				'eur' => '12 € na měsíc',
-			));
+			), 'czk');
 		?>
 	</div>
 <p>

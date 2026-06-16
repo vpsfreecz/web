@@ -129,6 +129,9 @@ expect_valid('country accepts normal value', 'cs', 'country', 'Cesko');
 expect_errors('country rejects one character', 'en', 'country', 'A', array('LEN_2'));
 expect_errors('country rejects digits', 'en', 'country', 'CZ1', array('NOTNUM'));
 
+expect_valid('how accepts short value', 'cs', 'how', 'x');
+expect_errors('how rejects random value', 'cs', 'how', 'hhhh', array('RANDOMTEXT'));
+
 expect_valid('org name accepts three characters', 'en', 'org_name', 'ABC');
 expect_errors('org name rejects short value', 'en', 'org_name', 'AB', array('LEN_3'));
 
