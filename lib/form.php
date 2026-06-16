@@ -1334,9 +1334,6 @@ class Validators {
 		if (!$v)
 			return true;
 
-		if (strlen($v) < 4)
-			return 'LEN_4';
-
 		if ($this->looksRandom($v))
 			return 'RANDOMTEXT';
 
