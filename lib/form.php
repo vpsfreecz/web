@@ -1354,12 +1354,13 @@ class Validators {
 		if (preg_match('/(.)\1{3,}/u', $v))
 			return true;
 
-		$compact = preg_replace('/[^a-zA-Z0-9]/', '', $v);
+		$ascii = $this->removeDiacritics($v);
+		$compact = preg_replace('/[^a-zA-Z0-9]/', '', $ascii);
 
 		if (strlen($compact) >= 6 && !preg_match('/[aeiouyAEIOUY]/', $compact))
 			return true;
 
-		if (strlen($compact) >= 8 && preg_match('/^[a-zA-Z0-9]+$/', $v)) {
+		if (strlen($compact) >= 8 && preg_match('/^[a-zA-Z0-9]+$/', $ascii)) {
 			$letters = preg_match_all('/[a-zA-Z]/', $compact);
 			$digits = preg_match_all('/\d/', $compact);
 

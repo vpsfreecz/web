@@ -107,6 +107,8 @@ expect_errors('birth rejects too young', 'en', 'birth', (string)($year - 5), arr
 expect_errors('birth rejects too old', 'en', 'birth', (string)($year - 101), array('NOTBIRTH'));
 
 expect_valid('cs address accepts house number', 'cs', 'address', 'Street 12');
+expect_valid('cs address accepts diacritics before random check', 'cs', 'address', 'Krátká 393');
+expect_errors('cs address rejects consonant-like random text', 'cs', 'address', 'Krtk393', array('RANDOMTEXT'));
 expect_errors('cs address requires house number', 'cs', 'address', 'Street', array('NOHOUSEN'));
 expect_errors('cs address rejects one character', 'cs', 'address', 'A', array('LEN_5', 'NOHOUSEN'));
 expect_valid('en address accepts no house number', 'en', 'address', 'Street');
