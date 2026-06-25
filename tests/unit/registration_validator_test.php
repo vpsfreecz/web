@@ -136,6 +136,7 @@ expect_errors('note rejects random value', 'cs', 'note', 'hhhh', array('RANDOMTE
 
 expect_valid('org name accepts three characters', 'en', 'org_name', 'ABC');
 expect_errors('org name rejects short value', 'en', 'org_name', 'AB', array('LEN_3'));
+expect_valid('org name accepts abbreviation-like value', 'cs', 'org_name', '4H1M, z.s.');
 
 expect_valid('org id accepts spaces', 'cs', 'ic', '123 456');
 expect_errors('org id rejects short value', 'cs', 'ic', '12345', array('LEN_6'));

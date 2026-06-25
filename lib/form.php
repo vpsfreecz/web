@@ -1274,9 +1274,6 @@ class Validators {
 		if (strlen($v) < 3)
 			$ret[] = 'LEN_3';
 
-		if ($this->looksRandom($v))
-			$ret[] = 'RANDOMTEXT';
-
 		return $ret;
 	}
 
