@@ -82,7 +82,7 @@ test('Czech person form requires selected country', async ({ page }) => {
   });
   await submitValidationForm(page);
 
-  await expectFieldError(page, 'country', 'Stát: musí mít minimálně 2 znaky');
+  await expectFieldError(page, 'country', 'Stát: vyber některou z nabízených voleb');
 });
 
 test('English company form rejects representative invalid organization values', async ({

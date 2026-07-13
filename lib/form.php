@@ -116,6 +116,16 @@ class RegistrationForm {
 		$startedAt = time();
 		$token = $this->formToken($startedAt);
 
+		if (
+			isset($_POST['form_started_at']) &&
+			ctype_digit($_POST['form_started_at']) &&
+			isset($_POST['form_token']) &&
+			$this->safeEquals($this->formToken(intval($_POST['form_started_at'])), $_POST['form_token'])
+		) {
+			$startedAt = intval($_POST['form_started_at']);
+			$token = $_POST['form_token'];
+		}
+
 		echo '<div style="position: absolute; left: -10000px;" aria-hidden="true">';
 		echo '<label for="website">'.htmlspecialchars($honeypotLabel, ENT_QUOTES, 'UTF-8').'</label>';
 		echo '<input type="text" id="website" name="website" value="" tabindex="-1" autocomplete="off">';
@@ -1255,6 +1265,9 @@ class Validators {
 
 	public function country($v) {
 		$ret = array();
+
+		if (trim((string)$v) === '')
+			return 'NOTSELECTED';
 
 		if (strlen($v) < 2)
 			$ret[] = 'LEN_2';

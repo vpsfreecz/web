@@ -128,6 +128,8 @@ expect_valid('uganda accepts n/a postal code', 'en', 'zip', 'N/A', null, array('
 expect_errors('en zip rejects empty', 'en', 'zip', '', array('NOTEMPTY'));
 
 expect_valid('country accepts normal value', 'cs', 'country', 'Cesko');
+expect_errors('country rejects empty select value', 'cs', 'country', '', array('NOTSELECTED'));
+expect_errors('country rejects missing select value', 'cs', 'country', null, array('NOTSELECTED'));
 expect_errors('country rejects one character', 'en', 'country', 'A', array('LEN_2'));
 expect_errors('country rejects digits', 'en', 'country', 'CZ1', array('NOTNUM'));
 
